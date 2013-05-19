@@ -20,6 +20,7 @@
 
 @property (nonatomic,strong) NSManagedObjectContext* managedObjectContext;
 @property (weak) NSTimer *repeatingTimer;
+@property (nonatomic) BOOL dataIsValid;
 
 - (NSDictionary *)userInfo;
 

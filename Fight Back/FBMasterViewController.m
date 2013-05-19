@@ -12,6 +12,8 @@
 #import "SpeedData.h"
 #import "TTLocationHandler.h"
 
+#define CONVERSION_RATE 1000
+
 @interface FBMasterViewController ()
 
 @end
@@ -154,18 +156,26 @@
 }
 
 - (void) writeInDbWithLocation:(CLLocation *)currentLocation{
-        
+    
+    
     NSManagedObjectContext *context = [appDelegate managedObjectContext];
     SpeedData *speedData = [NSEntityDescription insertNewObjectForEntityForName:@"SpeedData" inManagedObjectContext:context];
-    speedData.speed = [@"" stringByAppendingFormat:@"%f",[currentLocation speed]];
+    speedData.speed = [@"" stringByAppendingFormat:@"%f",([currentLocation speed]*3600/CONVERSION_RATE)];
     speedData.latitute = [@"" stringByAppendingFormat:@"%f",currentLocation.coordinate.latitude];
     speedData.lontitude = [@"" stringByAppendingFormat:@"%f",currentLocation.coordinate.longitude];
     speedData.timeStamp = [NSDate date];
-    
+    if (currentLocation && [currentLocation speed]>-1) {
+        speedData.dataIsValid = [NSNumber numberWithBool:YES];
+    }
+    else {
+        speedData.dataIsValid = [NSNumber numberWithBool:NO];
+    }
     NSError *error;
     if (![appDelegate.managedObjectContext save:&error]) {
         NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
     }
+
+
 }
 
 @end

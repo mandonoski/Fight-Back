@@ -2,7 +2,7 @@
 //  SpeedData.m
 //  Fight Back
 //
-//  Created by Martin on 5/12/13.
+//  Created by Martin on 5/19/13.
 //  Copyright (c) 2013 Martin. All rights reserved.
 //
 
@@ -11,9 +11,10 @@
 
 @implementation SpeedData
 
-@dynamic timeStamp;
-@dynamic speed;
 @dynamic latitute;
 @dynamic lontitude;
+@dynamic speed;
+@dynamic timeStamp;
+@dynamic dataIsValid;
 
 @end

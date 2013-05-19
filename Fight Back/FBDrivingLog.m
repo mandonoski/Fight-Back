@@ -97,14 +97,21 @@
     }
     
     SpeedData *thisRow = [self.logData objectAtIndex:indexPath.row];
+    if ([thisRow.dataIsValid isEqualToNumber:[NSNumber numberWithBool:YES]]) {
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"HH:mm:ss MM/dd/yyyy"];
+        NSString *stringDateRepresentation = [formatter stringFromDate:thisRow.timeStamp];
+        
+        cell.dateLabel.text = stringDateRepresentation;
+        float speed = [thisRow.speed floatValue];
+        cell.speedLabel.text = [@"" stringByAppendingFormat:@"%.02f km/h",speed];
+    }
+    else {
+        cell.dateLabel.hidden = YES;
+        cell.speedLabel.hidden = YES;
+        cell.noDataCell.hidden = NO;
+    }
     
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"HH:mm:ss MM/dd/yyyy"];
-    NSString *stringDateRepresentation = [formatter stringFromDate:thisRow.timeStamp];
-    
-    cell.dateLabel.text = stringDateRepresentation;
-    float speed = [thisRow.speed floatValue];
-    cell.speedLabel.text = [@"" stringByAppendingFormat:@"%.02f MPH",speed];
     
     return cell;
 }

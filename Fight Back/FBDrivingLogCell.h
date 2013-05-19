@@ -12,5 +12,6 @@
 
 @property (nonatomic, strong) UILabel *dateLabel;
 @property (nonatomic, strong) UILabel *speedLabel;
+@property (nonatomic, strong) UILabel *noDataCell;
 
 @end

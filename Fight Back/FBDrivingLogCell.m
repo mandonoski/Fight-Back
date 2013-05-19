@@ -35,6 +35,14 @@
         [containerView addSubview:self.speedLabel];
         self.speedLabel.text = @"999 MPH";
         
+        self.noDataCell = [[UILabel alloc] initWithFrame:CGRectMake(20, 5, 280, 30)];
+        self.noDataCell.backgroundColor = [UIColor clearColor];
+        self.noDataCell.textColor = fontColor;
+        self.noDataCell.textAlignment = NSTextAlignmentCenter;
+        self.noDataCell.text = @"No GPS data availible";
+        self.noDataCell.hidden = YES;
+        [containerView addSubview:self.noDataCell];
+        
         [self addSubview:containerView];
     }
     return self;

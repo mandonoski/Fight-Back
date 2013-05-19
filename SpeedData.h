@@ -2,7 +2,7 @@
 //  SpeedData.h
 //  Fight Back
 //
-//  Created by Martin on 5/12/13.
+//  Created by Martin on 5/19/13.
 //  Copyright (c) 2013 Martin. All rights reserved.
 //
 
@@ -12,9 +12,10 @@
 
 @interface SpeedData : NSManagedObject
 
-@property (nonatomic, retain) NSDate * timeStamp;
-@property (nonatomic, retain) NSString * speed;
 @property (nonatomic, retain) NSString * latitute;
 @property (nonatomic, retain) NSString * lontitude;
+@property (nonatomic, retain) NSString * speed;
+@property (nonatomic, retain) NSDate * timeStamp;
+@property (nonatomic, retain) NSNumber * dataIsValid;
 
 @end

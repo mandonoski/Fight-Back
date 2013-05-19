@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		5B22B851173FF6B000577209 /* FBCLController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B22B850173FF6B000577209 /* FBCLController.m */; };
 		5B22B852173FF9C500577209 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B22B84B173FF55700577209 /* CoreLocation.framework */; };
-		5B22B85717402D7700577209 /* SpeedData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B22B85617402D7600577209 /* SpeedData.m */; };
 		5B8A896017353C2400E77A6A /* FBVicleCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B8A895F17353C2400E77A6A /* FBVicleCellView.m */; };
 		5B8A8964173542DB00E77A6A /* list_devider.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B8A8963173542DB00E77A6A /* list_devider.png */; };
 		5B8A89661735462400E77A6A /* 1_navigation_next_item.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B8A89651735462400E77A6A /* 1_navigation_next_item.png */; };
@@ -48,14 +47,13 @@
 		5B8CA1591745650600846384 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B8CA1581745650600846384 /* AudioToolbox.framework */; };
 		5B8CA15B1745651100846384 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B8CA15A1745651100846384 /* AVFoundation.framework */; };
 		5BA56DF317478C2F006F0D1A /* TTLocationHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA56DF217478C2F006F0D1A /* TTLocationHandler.m */; };
+		5BA56DF617496758006F0D1A /* SpeedData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA56DF517496758006F0D1A /* SpeedData.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		5B22B84B173FF55700577209 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		5B22B84F173FF6B000577209 /* FBCLController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBCLController.h; sourceTree = "<group>"; };
 		5B22B850173FF6B000577209 /* FBCLController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBCLController.m; sourceTree = "<group>"; };
-		5B22B85517402D7600577209 /* SpeedData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeedData.h; sourceTree = "<group>"; };
-		5B22B85617402D7600577209 /* SpeedData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpeedData.m; sourceTree = "<group>"; };
 		5B8A895E17353C2400E77A6A /* FBVicleCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBVicleCellView.h; sourceTree = "<group>"; };
 		5B8A895F17353C2400E77A6A /* FBVicleCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBVicleCellView.m; sourceTree = "<group>"; };
 		5B8A8963173542DB00E77A6A /* list_devider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = list_devider.png; sourceTree = "<group>"; };
@@ -104,6 +102,8 @@
 		5B8CA15A1745651100846384 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		5BA56DF117478C2F006F0D1A /* TTLocationHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTLocationHandler.h; sourceTree = "<group>"; };
 		5BA56DF217478C2F006F0D1A /* TTLocationHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTLocationHandler.m; sourceTree = "<group>"; };
+		5BA56DF417496758006F0D1A /* SpeedData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SpeedData.h; path = ../SpeedData.h; sourceTree = "<group>"; };
+		5BA56DF517496758006F0D1A /* SpeedData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SpeedData.m; path = ../SpeedData.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,8 +147,8 @@
 		5B22B85817402D7D00577209 /* Objects */ = {
 			isa = PBXGroup;
 			children = (
-				5B22B85517402D7600577209 /* SpeedData.h */,
-				5B22B85617402D7600577209 /* SpeedData.m */,
+				5BA56DF417496758006F0D1A /* SpeedData.h */,
+				5BA56DF517496758006F0D1A /* SpeedData.m */,
 			);
 			name = Objects;
 			sourceTree = "<group>";
@@ -364,9 +364,9 @@
 				5B8A89731735625200E77A6A /* FBDrivingLog.m in Sources */,
 				5B8A89761735844000E77A6A /* FBDrivingLogCell.m in Sources */,
 				5B22B851173FF6B000577209 /* FBCLController.m in Sources */,
-				5B22B85717402D7700577209 /* SpeedData.m in Sources */,
 				5B8CA156174563E600846384 /* MMPDeepSleepPreventer.m in Sources */,
 				5BA56DF317478C2F006F0D1A /* TTLocationHandler.m in Sources */,
+				5BA56DF617496758006F0D1A /* SpeedData.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
