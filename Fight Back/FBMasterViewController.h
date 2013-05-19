@@ -7,12 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FBCLController.h"
+#import "FBAppDelegate.h"
 
-#import <CoreData/CoreData.h>
+@interface FBMasterViewController : UIViewController <UITableViewDataSource, UITabBarDelegate>{
+    FBCLController *locationController;
+    BOOL isRecording;
+    NSTimer *timer;
+    FBAppDelegate *appDelegate;
 
-@interface FBMasterViewController : UITableViewController <NSFetchedResultsControllerDelegate>
+}
 
-@property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
-@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic,strong) NSManagedObjectContext* managedObjectContext;
+@property (weak) NSTimer *repeatingTimer;
+
+- (NSDictionary *)userInfo;
 
 @end

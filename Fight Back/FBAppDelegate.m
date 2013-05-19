@@ -7,7 +7,7 @@
 //
 
 #import "FBAppDelegate.h"
-
+#import "TTLocationHandler.h"
 #import "FBMasterViewController.h"
 
 @implementation FBAppDelegate
@@ -15,6 +15,8 @@
 @synthesize managedObjectContext = _managedObjectContext;
 @synthesize managedObjectModel = _managedObjectModel;
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
+@synthesize logData = _logData;
+@synthesize locationController = _locationController;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -22,7 +24,35 @@
     UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
     FBMasterViewController *controller = (FBMasterViewController *)navigationController.topViewController;
     controller.managedObjectContext = self.managedObjectContext;
+    
+    self.deepSleepPreventer = [[MMPDeepSleepPreventer alloc] init];
+	[self.deepSleepPreventer startPreventSleep];
+    
+    self.locationController = [[FBCLController alloc] init];
+    
+    /*self.sharedLocationHandler = [TTLocationHandler sharedLocationHandler];
+    self.sharedLocationHandler.locationManagerPurposeString =
+    NSLocalizedString(@"LOCATION SERVICES ARE REQUIRED FOR THE PURPOSES OF THE APPLICATION TESTING", @"Location services request purpose string.");
+    
+    // Set background status. Update continuosly in background only when plugged in or regardless of power state.
+    self.sharedLocationHandler.updatesInBackgroundWhenCharging = YES;
+    // UPDATING IN BACKGROUND WHILE ON BATTERY WILL IMPACT THE USER'S BATTERY LIFE CONSIDERABLY
+    self.sharedLocationHandler.continuesUpdatingOnBattery = YES;
+    
+    // Set interval of notices on change of location
+    self.sharedLocationHandler.recencyThreshold = 10.0;
+    
+    self.sharedLocationHandler.writesToDatabase = NO;
+    
+    [self.sharedLocationHandler setWalkMode:YES];*/
+    
     return YES;
+}
+
+- (void)applicationDidFinishLaunching:(UIApplication *)application
+{
+	// Here we create our deepSleepPreventer and get it to keep our iPhone from deep sleeping
+	
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application
@@ -146,6 +176,44 @@
 - (NSURL *)applicationDocumentsDirectory
 {
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+}
+
+#pragma mark - Shared Functionlety
+
+- (NSArray *)generateLog{
+    
+    NSError *error;
+    if (![self.managedObjectContext save:&error]) {
+        NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+    }
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"SpeedData"
+                                              inManagedObjectContext:self.managedObjectContext];
+    [fetchRequest setEntity:entity];
+    NSDate *now = [NSDate dateWithTimeIntervalSinceNow:-60*5];
+    
+    NSPredicate *dateFIlter = [NSPredicate predicateWithFormat:@"timeStamp > %@",now];
+    [fetchRequest setPredicate:dateFIlter];
+    NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"timeStamp" ascending:NO selector:@selector(caseInsensitiveCompare:)];
+    [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sort]];
+    
+    self.logData = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    
+    return self.logData;
+    
+}
+
++ (void) gpsOn
+{	
+	/*locationController = [[FBCLController alloc] init];
+    
+	[locationController startUpdatingLocation];*/
+}
+
++ (void) gpsOff
+{
+	//[locationController stopUpdatingLocation];
 }
 
 @end
