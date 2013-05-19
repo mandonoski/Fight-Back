@@ -48,6 +48,7 @@
 		5B8CA15B1745651100846384 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B8CA15A1745651100846384 /* AVFoundation.framework */; };
 		5BA56DF317478C2F006F0D1A /* TTLocationHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA56DF217478C2F006F0D1A /* TTLocationHandler.m */; };
 		5BA56DF617496758006F0D1A /* SpeedData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA56DF517496758006F0D1A /* SpeedData.m */; };
+		5BA56DF9174982A8006F0D1A /* ViechleProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA56DF8174982A8006F0D1A /* ViechleProfile.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -104,6 +105,8 @@
 		5BA56DF217478C2F006F0D1A /* TTLocationHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTLocationHandler.m; sourceTree = "<group>"; };
 		5BA56DF417496758006F0D1A /* SpeedData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SpeedData.h; path = ../SpeedData.h; sourceTree = "<group>"; };
 		5BA56DF517496758006F0D1A /* SpeedData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SpeedData.m; path = ../SpeedData.m; sourceTree = "<group>"; };
+		5BA56DF7174982A7006F0D1A /* ViechleProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViechleProfile.h; sourceTree = "<group>"; };
+		5BA56DF8174982A8006F0D1A /* ViechleProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViechleProfile.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +152,8 @@
 			children = (
 				5BA56DF417496758006F0D1A /* SpeedData.h */,
 				5BA56DF517496758006F0D1A /* SpeedData.m */,
+				5BA56DF7174982A7006F0D1A /* ViechleProfile.h */,
+				5BA56DF8174982A8006F0D1A /* ViechleProfile.m */,
 			);
 			name = Objects;
 			sourceTree = "<group>";
@@ -367,6 +372,7 @@
 				5B8CA156174563E600846384 /* MMPDeepSleepPreventer.m in Sources */,
 				5BA56DF317478C2F006F0D1A /* TTLocationHandler.m in Sources */,
 				5BA56DF617496758006F0D1A /* SpeedData.m in Sources */,
+				5BA56DF9174982A8006F0D1A /* ViechleProfile.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,7 +10,14 @@
         </attribute>
         <userInfo/>
     </entity>
+    <entity name="ViechleProfile" representedClassName="ViechleProfile" syncable="YES">
+        <attribute name="color" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="licencePlate" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="year" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <elements>
         <element name="SpeedData" positionX="133" positionY="-459" width="128" height="118"/>
+        <element name="ViechleProfile" positionX="-38" positionY="-450" width="128" height="103"/>
     </elements>
 </model>
