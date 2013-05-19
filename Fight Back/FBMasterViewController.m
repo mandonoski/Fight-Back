@@ -108,7 +108,8 @@
         //appDelegate.sharedLocationHandler.writesToDatabase = NO;
     }
     else {
-        isRecording = YES;        
+        isRecording = YES;
+        
         NSLog(@"Location: %@", [locationController.locationManager.location description]);
         [self writeInDbWithLocation:locationController.locationManager.location];
         
@@ -117,10 +118,10 @@
                                                              selector:@selector(targetMethod:)
                                                              userInfo:[self userInfo]
                                                               repeats:YES];
-        NSRunLoop *loop = [NSRunLoop currentRunLoop];
+        /*NSRunLoop *loop = [NSRunLoop currentRunLoop];
         [loop addTimer:self.repeatingTimer forMode:NSRunLoopCommonModes];
-        [loop run];
-    
+        [loop run];*/
+
         //appDelegate.sharedLocationHandler.writesToDatabase = YES;
     }
     

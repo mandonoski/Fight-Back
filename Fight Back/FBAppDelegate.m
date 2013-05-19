@@ -29,6 +29,7 @@
 	[self.deepSleepPreventer startPreventSleep];
     
     self.locationController = [[FBCLController alloc] init];
+    [self.locationController.locationManager startUpdatingLocation];
     
     /*self.sharedLocationHandler = [TTLocationHandler sharedLocationHandler];
     self.sharedLocationHandler.locationManagerPurposeString =
@@ -52,6 +53,8 @@
 - (void)applicationDidFinishLaunching:(UIApplication *)application
 {
 	// Here we create our deepSleepPreventer and get it to keep our iPhone from deep sleeping
+	self.deepSleepPreventer = [[MMPDeepSleepPreventer alloc] init];
+	[self.deepSleepPreventer startPreventSleep];
 	
 }
 							

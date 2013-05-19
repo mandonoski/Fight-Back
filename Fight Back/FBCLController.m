@@ -22,18 +22,16 @@
         self.locationManager.pausesLocationUpdatesAutomatically = NO;
         // New property for iOS6
         if ([self.locationManager respondsToSelector:@selector(activityType)]) {
-            self.locationManager.activityType = CLActivityTypeAutomotiveNavigation;
+            self.locationManager.activityType = CLActivityTypeFitness;
         }
-        
-
     }
     return self;
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
-    NSLog(@"Location: %@", [newLocation description]);
-    NSLog(@"Location: %f", [newLocation speed]);
+    //NSLog(@"Location: %@", [newLocation description]);
+    //NSLog(@"Location: %f", [newLocation speed]);
 }
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
