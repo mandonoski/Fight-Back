@@ -46,9 +46,14 @@
 		5B8CA157174563E600846384 /* MMPSilence.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5B8CA155174563E600846384 /* MMPSilence.wav */; };
 		5B8CA1591745650600846384 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B8CA1581745650600846384 /* AudioToolbox.framework */; };
 		5B8CA15B1745651100846384 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B8CA15A1745651100846384 /* AVFoundation.framework */; };
+		5BA09EA3174A3BC100FB1FAF /* SpeedData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA09EA2174A3BC100FB1FAF /* SpeedData.m */; };
+		5BA09EA6174A3BD400FB1FAF /* ViechleProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA09EA5174A3BD400FB1FAF /* ViechleProfile.m */; };
+		5BA09EAC174A3C5600FB1FAF /* FBViechleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA09EAB174A3C5600FB1FAF /* FBViechleViewController.m */; };
+		5BA09EB1174A3ED500FB1FAF /* no.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BA09EAD174A3ED500FB1FAF /* no.png */; };
+		5BA09EB2174A3ED500FB1FAF /* no@2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BA09EAE174A3ED500FB1FAF /* no@2.png */; };
+		5BA09EB3174A3ED500FB1FAF /* yes.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BA09EAF174A3ED500FB1FAF /* yes.png */; };
+		5BA09EB4174A3ED500FB1FAF /* yes@2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BA09EB0174A3ED500FB1FAF /* yes@2.png */; };
 		5BA56DF317478C2F006F0D1A /* TTLocationHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA56DF217478C2F006F0D1A /* TTLocationHandler.m */; };
-		5BA56DF617496758006F0D1A /* SpeedData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA56DF517496758006F0D1A /* SpeedData.m */; };
-		5BA56DF9174982A8006F0D1A /* ViechleProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA56DF8174982A8006F0D1A /* ViechleProfile.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -101,12 +106,18 @@
 		5B8CA155174563E600846384 /* MMPSilence.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = MMPSilence.wav; sourceTree = "<group>"; };
 		5B8CA1581745650600846384 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		5B8CA15A1745651100846384 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		5BA09EA1174A3BC100FB1FAF /* SpeedData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeedData.h; sourceTree = "<group>"; };
+		5BA09EA2174A3BC100FB1FAF /* SpeedData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpeedData.m; sourceTree = "<group>"; };
+		5BA09EA4174A3BD400FB1FAF /* ViechleProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViechleProfile.h; sourceTree = "<group>"; };
+		5BA09EA5174A3BD400FB1FAF /* ViechleProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViechleProfile.m; sourceTree = "<group>"; };
+		5BA09EAA174A3C5600FB1FAF /* FBViechleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBViechleViewController.h; sourceTree = "<group>"; };
+		5BA09EAB174A3C5600FB1FAF /* FBViechleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBViechleViewController.m; sourceTree = "<group>"; };
+		5BA09EAD174A3ED500FB1FAF /* no.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = no.png; sourceTree = "<group>"; };
+		5BA09EAE174A3ED500FB1FAF /* no@2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "no@2.png"; sourceTree = "<group>"; };
+		5BA09EAF174A3ED500FB1FAF /* yes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yes.png; sourceTree = "<group>"; };
+		5BA09EB0174A3ED500FB1FAF /* yes@2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "yes@2.png"; sourceTree = "<group>"; };
 		5BA56DF117478C2F006F0D1A /* TTLocationHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTLocationHandler.h; sourceTree = "<group>"; };
 		5BA56DF217478C2F006F0D1A /* TTLocationHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTLocationHandler.m; sourceTree = "<group>"; };
-		5BA56DF417496758006F0D1A /* SpeedData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SpeedData.h; path = ../SpeedData.h; sourceTree = "<group>"; };
-		5BA56DF517496758006F0D1A /* SpeedData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SpeedData.m; path = ../SpeedData.m; sourceTree = "<group>"; };
-		5BA56DF7174982A7006F0D1A /* ViechleProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViechleProfile.h; sourceTree = "<group>"; };
-		5BA56DF8174982A8006F0D1A /* ViechleProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViechleProfile.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +145,8 @@
 				5B8C563A1729C02200953C18 /* FBMasterViewController.m */,
 				5B8A89711735625200E77A6A /* FBDrivingLog.h */,
 				5B8A89721735625200E77A6A /* FBDrivingLog.m */,
+				5BA09EAA174A3C5600FB1FAF /* FBViechleViewController.h */,
+				5BA09EAB174A3C5600FB1FAF /* FBViechleViewController.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -150,10 +163,10 @@
 		5B22B85817402D7D00577209 /* Objects */ = {
 			isa = PBXGroup;
 			children = (
-				5BA56DF417496758006F0D1A /* SpeedData.h */,
-				5BA56DF517496758006F0D1A /* SpeedData.m */,
-				5BA56DF7174982A7006F0D1A /* ViechleProfile.h */,
-				5BA56DF8174982A8006F0D1A /* ViechleProfile.m */,
+				5BA09EA1174A3BC100FB1FAF /* SpeedData.h */,
+				5BA09EA2174A3BC100FB1FAF /* SpeedData.m */,
+				5BA09EA4174A3BD400FB1FAF /* ViechleProfile.h */,
+				5BA09EA5174A3BD400FB1FAF /* ViechleProfile.m */,
 			);
 			name = Objects;
 			sourceTree = "<group>";
@@ -239,6 +252,10 @@
 		5B8C6F6F1734E72900CF2C93 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5BA09EAD174A3ED500FB1FAF /* no.png */,
+				5BA09EAE174A3ED500FB1FAF /* no@2.png */,
+				5BA09EAF174A3ED500FB1FAF /* yes.png */,
+				5BA09EB0174A3ED500FB1FAF /* yes@2.png */,
 				5B8A896F1735605300E77A6A /* 1_navigation_cancel.png */,
 				5B8A896717355B8200E77A6A /* SPLASH.png */,
 				5B8A89651735462400E77A6A /* 1_navigation_next_item.png */,
@@ -351,6 +368,10 @@
 				5B8A896E17355C0E00E77A6A /* Default-568h@2x.png in Resources */,
 				5B8A89701735605300E77A6A /* 1_navigation_cancel.png in Resources */,
 				5B8CA157174563E600846384 /* MMPSilence.wav in Resources */,
+				5BA09EB1174A3ED500FB1FAF /* no.png in Resources */,
+				5BA09EB2174A3ED500FB1FAF /* no@2.png in Resources */,
+				5BA09EB3174A3ED500FB1FAF /* yes.png in Resources */,
+				5BA09EB4174A3ED500FB1FAF /* yes@2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -371,8 +392,9 @@
 				5B22B851173FF6B000577209 /* FBCLController.m in Sources */,
 				5B8CA156174563E600846384 /* MMPDeepSleepPreventer.m in Sources */,
 				5BA56DF317478C2F006F0D1A /* TTLocationHandler.m in Sources */,
-				5BA56DF617496758006F0D1A /* SpeedData.m in Sources */,
-				5BA56DF9174982A8006F0D1A /* ViechleProfile.m in Sources */,
+				5BA09EA3174A3BC100FB1FAF /* SpeedData.m in Sources */,
+				5BA09EA6174A3BD400FB1FAF /* ViechleProfile.m in Sources */,
+				5BA09EAC174A3C5600FB1FAF /* FBViechleViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

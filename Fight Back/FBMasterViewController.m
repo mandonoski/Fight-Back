@@ -11,10 +11,15 @@
 #import "FBVicleCellView.h"
 #import "SpeedData.h"
 #import "TTLocationHandler.h"
+#import "ViechleProfile.h"
 
 #define CONVERSION_RATE 1000
 
 @interface FBMasterViewController ()
+
+@property (nonatomic, weak) IBOutlet UITableView *mainTable;
+
+@property (nonatomic, strong) NSArray *viechles;
 
 @end
 
@@ -32,20 +37,47 @@
     locationController = [[FBCLController alloc] init];
     appDelegate = (FBAppDelegate *)[[UIApplication sharedApplication] delegate];//[[FBAppDelegate alloc] init];
     
-    
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
-- (void)didReceiveMemoryWarning
+- (void)viewWillAppear:(BOOL)animated{
+    
+    [super viewWillAppear:animated];
+    [self reloadTableData];
+    
+}
+
+#pragma mark - Internal Func
+
+- (void)reloadTableData
 {
-    [super didReceiveMemoryWarning];
+    self.viechles = [NSArray arrayWithArray:[self getViechles]];
+    [self.mainTable reloadData];
+}
+
+- (NSArray *)getViechles{
+    
+    NSError *error;
+    if (![self.managedObjectContext save:&error]) {
+        NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+    }
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"ViechleProfile"
+                                              inManagedObjectContext:self.managedObjectContext];
+    [fetchRequest setEntity:entity];
+    
+    NSArray *results = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    
+    return results;
+    
 }
 
 #pragma mark - Table functionalety
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 2;
+    return [self.viechles count];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -61,6 +93,14 @@
     FBVicleCellView *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[FBVicleCellView alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
+    
+    ViechleProfile *thisViechle = [self.viechles objectAtIndex:indexPath.row];
+    
+    cell.name.text = thisViechle.name;
+    cell.yearAndColorLabel.text = thisViechle.color;
+    if (thisViechle.active) {
+        cell.contentView.backgroundColor = [UIColor redColor];
     }
     
     return cell;

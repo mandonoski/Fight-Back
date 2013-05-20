@@ -2,7 +2,7 @@
 //  ViechleProfile.m
 //  Fight Back
 //
-//  Created by Martin on 5/19/13.
+//  Created by martin on 5/20/13.
 //  Copyright (c) 2013 Martin. All rights reserved.
 //
 
@@ -11,9 +11,10 @@
 
 @implementation ViechleProfile
 
-@dynamic name;
 @dynamic color;
+@dynamic make;
+@dynamic name;
 @dynamic year;
-@dynamic licencePlate;
+@dynamic active;
 
 @end
