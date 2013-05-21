@@ -80,8 +80,8 @@
 #pragma mark -
 #pragma mark Properties
 
-@property (nonatomic, retain) AVAudioPlayer	*audioPlayer;
-@property (nonatomic, retain) NSTimer		*preventSleepTimer;
+@property (nonatomic, strong) AVAudioPlayer	*audioPlayer;
+@property (nonatomic, strong) NSTimer		*preventSleepTimer;
 
 
 #pragma mark -

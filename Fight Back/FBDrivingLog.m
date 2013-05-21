@@ -105,6 +105,9 @@
         cell.dateLabel.text = stringDateRepresentation;
         float speed = [thisRow.speed floatValue];
         cell.speedLabel.text = [@"" stringByAppendingFormat:@"%.02f km/h",speed];
+        cell.dateLabel.hidden = NO;
+        cell.speedLabel.hidden = NO;
+        cell.noDataCell.hidden = YES;
     }
     else {
         cell.dateLabel.hidden = YES;

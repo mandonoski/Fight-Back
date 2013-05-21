@@ -8,11 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import "FBAppDelegate.h"
+#import "ViechleProfile.h"
 
 @interface FBViechleViewController : UIViewController <UIGestureRecognizerDelegate>{
     
     FBAppDelegate *appDelegate;
     
 }
+
+@property (nonatomic, readwrite) BOOL isEditing;
+@property (nonatomic, strong) ViechleProfile *editingProfile;
 
 @end

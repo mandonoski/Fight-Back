@@ -12,6 +12,7 @@
 #import "SpeedData.h"
 #import "TTLocationHandler.h"
 #import "ViechleProfile.h"
+#import "FBViechleViewController.h"
 
 #define CONVERSION_RATE 1000
 
@@ -99,8 +100,11 @@
     
     cell.name.text = thisViechle.name;
     cell.yearAndColorLabel.text = thisViechle.color;
-    if (thisViechle.active) {
+    if ([thisViechle.active isEqualToNumber:[NSNumber numberWithBool:YES]]) {
         cell.contentView.backgroundColor = [UIColor redColor];
+    }
+    else {
+        cell.contentView.backgroundColor = [UIColor clearColor];
     }
     
     return cell;
@@ -109,6 +113,13 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+    FBViechleViewController *controller = (FBViechleViewController*)[mainStoryboard instantiateViewControllerWithIdentifier:@"FBViechleViewController"];
+    controller.isEditing = YES;
+    ViechleProfile *thisViechle = [self.viechles objectAtIndex:indexPath.row];
+    controller.editingProfile = thisViechle;
+    [self presentViewController:controller animated:YES completion:nil];
         
 }
 
@@ -166,6 +177,16 @@
 
         //appDelegate.sharedLocationHandler.writesToDatabase = YES;
     }
+    
+}
+
+- (IBAction)createRecord:(id)sender
+{
+    
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+    FBViechleViewController *controller = (FBViechleViewController*)[mainStoryboard instantiateViewControllerWithIdentifier:@"FBViechleViewController"];
+    controller.isEditing = NO;
+    [self presentViewController:controller animated:YES completion:nil];
     
 }
 

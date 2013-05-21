@@ -79,10 +79,7 @@
 	NSURL *fileURL = [[NSURL alloc] initFileURLWithPath:soundFilePath];
 	
 	// Set up audio player with sound file
-	audioPlayer_ = [[AVAudioPlayer alloc] initWithContentsOfURL:fileURL
-																		error:nil];
-	
-
+	audioPlayer_ = [[AVAudioPlayer alloc] initWithContentsOfURL:fileURL error:nil];
 	
 	[self.audioPlayer prepareToPlay];
 	

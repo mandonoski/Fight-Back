@@ -141,7 +141,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <segue destination="XxA-gA-2bO" kind="modal" identifier="showViechleModal" id="Vhx-Bi-Rpe"/>
+                                            <action selector="createRecord:" destination="d5k-AJ-dpW" eventType="touchUpInside" id="4Mj-a2-IAx"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -213,7 +213,7 @@
         <!--Viechle View Controller-->
         <scene sceneID="mOx-4d-UBF">
             <objects>
-                <viewController id="XxA-gA-2bO" customClass="FBViechleViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FBViechleViewController" id="XxA-gA-2bO" customClass="FBViechleViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="MTT-PC-H3N">
                         <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
@@ -339,6 +339,8 @@
                         <outlet property="makeTextField" destination="5Jy-6J-eyY" id="oL5-E4-5Gq"/>
                         <outlet property="nameTextField" destination="d3X-bK-Sve" id="khN-aq-vN3"/>
                         <outlet property="submitButton" destination="aMA-iV-ZM1" id="mxG-js-QSO"/>
+                        <outlet property="titleLabel" destination="TAk-74-DDx" id="P31-If-Bms"/>
+                        <outlet property="yearTextField" destination="btJ-nG-nqv" id="086-fN-j0t"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9UH-c1-c9F" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -550,36 +552,6 @@
         <image name="second header.png" width="640" height="76"/>
         <image name="vertical devider.png" width="21" height="296"/>
     </resources>
-    <classes>
-        <class className="FBDrivingLog" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FBDrivingLog.h"/>
-            <relationships>
-                <relationship kind="action" name="dissmisPressed:"/>
-                <relationship kind="outlet" name="averageSpeedLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="day" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="endDateLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="maxSpeedLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="startDateLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="FBMasterViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FBMasterViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="mainTable" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="FBViechleViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FBViechleViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="tapRecognized:"/>
-                <relationship kind="outlet" name="active" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="colorTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="makeTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="nameTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="submitButton" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

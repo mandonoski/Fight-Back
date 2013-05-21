@@ -7,7 +7,6 @@
 //
 
 #import "FBViechleViewController.h"
-#import "ViechleProfile.h"
 
 @interface FBViechleViewController ()
 
@@ -16,9 +15,17 @@
 @property (nonatomic, weak) IBOutlet UITextField *nameTextField;
 @property (nonatomic, weak) IBOutlet UITextField *makeTextField;
 @property (nonatomic, weak) IBOutlet UITextField *colorTextField;
+@property (nonatomic, weak) IBOutlet UITextField *yearTextField;
+@property (nonatomic, weak) IBOutlet UILabel *titleLabel;
 
 @property(nonatomic, strong) UIImage *offImage;
 @property(nonatomic, strong) UIImage *onImage;
+
+#ifdef __IPHONE_6_0
+# define ALIGN_CENTER NSTextAlignmentCenter
+#else
+# define ALIGN_CENTER UITextAlignmentCenter
+#endif
 
 - (IBAction)tapRecognized:(id)sender;
 
@@ -34,19 +41,40 @@
     self.onImage = [UIImage imageNamed:@"yes.png"];
     self.active.onImage = self.onImage;
     self.active.offImage = self.offImage;
+    self.submitButton.titleLabel.textAlignment = ALIGN_CENTER;
+
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    if (self.isEditing) {
+        self.nameTextField.text = self.editingProfile.name;
+        self.makeTextField.text = self.editingProfile.make;
+        self.colorTextField.text = self.editingProfile.color;
+        self.yearTextField.text = self.editingProfile.year;
+        self.active.on = [self.editingProfile.active boolValue];
+        
+        self.submitButton.titleLabel.text = @"Save";
+        self.titleLabel.text = @"Edit Viechle";
+    }
 }
 
 #pragma mark - Internal Functyonalerty
 
-- (void) dismissKeyboard{
+- (void) dismissKeyboard
+{
     
     [self.nameTextField resignFirstResponder];
     [self.colorTextField resignFirstResponder];
     [self.makeTextField resignFirstResponder];
+    [self.yearTextField resignFirstResponder];
     
 }
 
-- (void) setAllViechlesInactive{
+- (void) setAllViechlesInactive
+{
     
     NSError *error;
     if (![[appDelegate managedObjectContext] save:&error]) {
@@ -89,13 +117,26 @@
     }
     
     NSManagedObjectContext *context = [appDelegate managedObjectContext];
-    ViechleProfile *viechleProfile = [NSEntityDescription insertNewObjectForEntityForName:@"ViechleProfile" inManagedObjectContext:context];
-    viechleProfile.name = self.nameTextField.text;
-    viechleProfile.color = self.colorTextField.text;
-    viechleProfile.make = self.makeTextField.text;
+    if (self.isEditing) {
+        self.editingProfile.name = self.nameTextField.text;
+        self.editingProfile.color = self.colorTextField.text;
+        self.editingProfile.make = self.makeTextField.text;
+        self.editingProfile.year = self.yearTextField.text;
+        
+        BOOL active = self.active.on;
+        self.editingProfile.active = [NSNumber numberWithBool:active];
+    }
+    else {
+        ViechleProfile *viechleProfile = [NSEntityDescription insertNewObjectForEntityForName:@"ViechleProfile" inManagedObjectContext:context];
+        viechleProfile.name = self.nameTextField.text;
+        viechleProfile.color = self.colorTextField.text;
+        viechleProfile.make = self.makeTextField.text;
+        viechleProfile.year = self.yearTextField.text;
+        
+        BOOL active = self.active.on;
+        viechleProfile.active = [NSNumber numberWithBool:active];
+    }
     
-    BOOL active = self.active.on;
-    viechleProfile.active = [NSNumber numberWithBool:active];
     
     NSError *error;
     if (![appDelegate.managedObjectContext save:&error]) {
