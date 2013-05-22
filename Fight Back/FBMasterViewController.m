@@ -8,19 +8,19 @@
 //
 
 #import "FBMasterViewController.h"
-#import "FBVicleCellView.h"
 #import "SpeedData.h"
 #import "TTLocationHandler.h"
-#import "ViechleProfile.h"
-#import "FBViechleViewController.h"
+#import "FBViechlesViewController.h"
+#import "FBDriversViewController.h"
 
 #define CONVERSION_RATE 1000
 
 @interface FBMasterViewController ()
 
-@property (nonatomic, weak) IBOutlet UITableView *mainTable;
+@property (nonatomic, strong) IBOutlet UIView *tableViewHolder;
 
-@property (nonatomic, strong) NSArray *viechles;
+@property (nonatomic, strong) FBViechlesViewController *viechlesView;
+@property (nonatomic, strong) FBDriversViewController *driversView;
 
 @end
 
@@ -38,89 +38,29 @@
     locationController = [[FBCLController alloc] init];
     appDelegate = (FBAppDelegate *)[[UIApplication sharedApplication] delegate];//[[FBAppDelegate alloc] init];
     
+    [self addViechleTable];
+    [self addDriversTable];
+    
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
-- (void)viewWillAppear:(BOOL)animated{
-    
-    [super viewWillAppear:animated];
-    [self reloadTableData];
-    
-}
-
-#pragma mark - Internal Func
-
-- (void)reloadTableData
+- (void) addViechleTable
 {
-    self.viechles = [NSArray arrayWithArray:[self getViechles]];
-    [self.mainTable reloadData];
-}
-
-- (NSArray *)getViechles{
-    
-    NSError *error;
-    if (![self.managedObjectContext save:&error]) {
-        NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
-    }
-    
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"ViechleProfile"
-                                              inManagedObjectContext:self.managedObjectContext];
-    [fetchRequest setEntity:entity];
-    
-    NSArray *results = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
-    
-    return results;
-    
-}
-
-#pragma mark - Table functionalety
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return [self.viechles count];
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 60;
-}
-
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{  
-    static NSString *CellIdentifier = @"Cell";
-    
-    FBVicleCellView *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[FBVicleCellView alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    }
-    
-    ViechleProfile *thisViechle = [self.viechles objectAtIndex:indexPath.row];
-    
-    cell.name.text = thisViechle.name;
-    cell.yearAndColorLabel.text = thisViechle.color;
-    if ([thisViechle.active isEqualToNumber:[NSNumber numberWithBool:YES]]) {
-        cell.contentView.backgroundColor = [UIColor redColor];
-    }
-    else {
-        cell.contentView.backgroundColor = [UIColor clearColor];
-    }
-    
-    return cell;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
-    FBViechleViewController *controller = (FBViechleViewController*)[mainStoryboard instantiateViewControllerWithIdentifier:@"FBViechleViewController"];
-    controller.isEditing = YES;
-    ViechleProfile *thisViechle = [self.viechles objectAtIndex:indexPath.row];
-    controller.editingProfile = thisViechle;
-    [self presentViewController:controller animated:YES completion:nil];
-        
+    self.viechlesView = (FBViechlesViewController*)[mainStoryboard instantiateViewControllerWithIdentifier:@"FBViechlesViewController"];
+    self.viechlesView.view.frame = CGRectMake(0, 0, self.tableViewHolder.frame.size.width, self.tableViewHolder.frame.size.height);
+    [self addChildViewController:self.viechlesView];
+    [self.tableViewHolder addSubview:self.viechlesView.view];
+}
+
+- (void) addDriversTable
+{
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+    self.driversView = (FBDriversViewController*)[mainStoryboard instantiateViewControllerWithIdentifier:@"FBDriversViewController"];
+    self.driversView.view.frame = CGRectMake(0, 0, self.tableViewHolder.frame.size.width, self.tableViewHolder.frame.size.height);
+    [self addChildViewController:self.driversView];
+    [self.tableViewHolder addSubview:self.driversView.view];
+    self.driversView.view.alpha = 0;
 }
 
 #pragma mark - dbHelper
@@ -180,13 +120,30 @@
     
 }
 
-- (IBAction)createRecord:(id)sender
+- (IBAction)viechlesPressed:(id)sender
 {
     
-    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
-    FBViechleViewController *controller = (FBViechleViewController*)[mainStoryboard instantiateViewControllerWithIdentifier:@"FBViechleViewController"];
-    controller.isEditing = NO;
-    [self presentViewController:controller animated:YES completion:nil];
+    [UIView animateWithDuration:0.3 animations:^{
+        self.driversView.view.alpha = 0.0;
+         
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:0.3 animations:^{
+            self.viechlesView.view.alpha = 1.0;
+        }];
+    }];
+    
+}
+
+- (IBAction)driversPressed:(id)sender
+{
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        self.viechlesView.view.alpha = 0.0;
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:0.3 animations:^{
+            self.driversView.view.alpha = 1.0;
+        }];
+    }];
     
 }
 
@@ -205,15 +162,6 @@
 
 - (void)invocationMethod:(NSDate *)date {
     NSLog(@"Invocation for timer started on %@", date);
-}
-
-- (IBAction)startOneOffTimer:sender {
-    
-    [NSTimer scheduledTimerWithTimeInterval:2.0
-                                     target:self
-                                   selector:@selector(targetMethod:)
-                                   userInfo:[self userInfo]
-                                    repeats:NO];
 }
 
 - (void) writeInDbWithLocation:(CLLocation *)currentLocation{

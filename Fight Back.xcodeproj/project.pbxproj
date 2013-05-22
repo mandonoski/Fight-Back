@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5B0E1072174CB2A4008E4AF5 /* FBDriverCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B0E1071174CB2A4008E4AF5 /* FBDriverCell.m */; };
+		5B0E107E174CB95A008E4AF5 /* FBViechlesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B0E107D174CB95A008E4AF5 /* FBViechlesViewController.m */; };
+		5B0E1083174CC072008E4AF5 /* FBDriversViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B0E1082174CC072008E4AF5 /* FBDriversViewController.m */; };
+		5B0E1086174CD899008E4AF5 /* ViechleProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B0E1085174CD899008E4AF5 /* ViechleProfile.m */; };
+		5B0E108B174D07DC008E4AF5 /* DriversProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B0E108A174D07DB008E4AF5 /* DriversProfile.m */; };
+		5B0E108E174D086F008E4AF5 /* FBDriverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B0E108D174D086F008E4AF5 /* FBDriverViewController.m */; };
 		5B22B851173FF6B000577209 /* FBCLController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B22B850173FF6B000577209 /* FBCLController.m */; };
 		5B22B852173FF9C500577209 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B22B84B173FF55700577209 /* CoreLocation.framework */; };
 		5B8A896017353C2400E77A6A /* FBVicleCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B8A895F17353C2400E77A6A /* FBVicleCellView.m */; };
@@ -47,7 +53,6 @@
 		5B8CA1591745650600846384 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B8CA1581745650600846384 /* AudioToolbox.framework */; };
 		5B8CA15B1745651100846384 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B8CA15A1745651100846384 /* AVFoundation.framework */; };
 		5BA09EA3174A3BC100FB1FAF /* SpeedData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA09EA2174A3BC100FB1FAF /* SpeedData.m */; };
-		5BA09EA6174A3BD400FB1FAF /* ViechleProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA09EA5174A3BD400FB1FAF /* ViechleProfile.m */; };
 		5BA09EAC174A3C5600FB1FAF /* FBViechleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA09EAB174A3C5600FB1FAF /* FBViechleViewController.m */; };
 		5BA09EB1174A3ED500FB1FAF /* no.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BA09EAD174A3ED500FB1FAF /* no.png */; };
 		5BA09EB2174A3ED500FB1FAF /* no@2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BA09EAE174A3ED500FB1FAF /* no@2.png */; };
@@ -57,6 +62,18 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5B0E1070174CB2A4008E4AF5 /* FBDriverCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBDriverCell.h; sourceTree = "<group>"; };
+		5B0E1071174CB2A4008E4AF5 /* FBDriverCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBDriverCell.m; sourceTree = "<group>"; };
+		5B0E107C174CB959008E4AF5 /* FBViechlesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBViechlesViewController.h; sourceTree = "<group>"; };
+		5B0E107D174CB95A008E4AF5 /* FBViechlesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBViechlesViewController.m; sourceTree = "<group>"; };
+		5B0E1081174CC072008E4AF5 /* FBDriversViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBDriversViewController.h; sourceTree = "<group>"; };
+		5B0E1082174CC072008E4AF5 /* FBDriversViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBDriversViewController.m; sourceTree = "<group>"; };
+		5B0E1084174CD899008E4AF5 /* ViechleProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViechleProfile.h; path = ../ViechleProfile.h; sourceTree = "<group>"; };
+		5B0E1085174CD899008E4AF5 /* ViechleProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViechleProfile.m; path = ../ViechleProfile.m; sourceTree = "<group>"; };
+		5B0E1089174D07DB008E4AF5 /* DriversProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DriversProfile.h; sourceTree = "<group>"; };
+		5B0E108A174D07DB008E4AF5 /* DriversProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DriversProfile.m; sourceTree = "<group>"; };
+		5B0E108C174D086F008E4AF5 /* FBDriverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBDriverViewController.h; sourceTree = "<group>"; };
+		5B0E108D174D086F008E4AF5 /* FBDriverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBDriverViewController.m; sourceTree = "<group>"; };
 		5B22B84B173FF55700577209 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		5B22B84F173FF6B000577209 /* FBCLController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBCLController.h; sourceTree = "<group>"; };
 		5B22B850173FF6B000577209 /* FBCLController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBCLController.m; sourceTree = "<group>"; };
@@ -108,8 +125,6 @@
 		5B8CA15A1745651100846384 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		5BA09EA1174A3BC100FB1FAF /* SpeedData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeedData.h; sourceTree = "<group>"; };
 		5BA09EA2174A3BC100FB1FAF /* SpeedData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpeedData.m; sourceTree = "<group>"; };
-		5BA09EA4174A3BD400FB1FAF /* ViechleProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViechleProfile.h; sourceTree = "<group>"; };
-		5BA09EA5174A3BD400FB1FAF /* ViechleProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViechleProfile.m; sourceTree = "<group>"; };
 		5BA09EAA174A3C5600FB1FAF /* FBViechleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBViechleViewController.h; sourceTree = "<group>"; };
 		5BA09EAB174A3C5600FB1FAF /* FBViechleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBViechleViewController.m; sourceTree = "<group>"; };
 		5BA09EAD174A3ED500FB1FAF /* no.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = no.png; sourceTree = "<group>"; };
@@ -147,6 +162,12 @@
 				5B8A89721735625200E77A6A /* FBDrivingLog.m */,
 				5BA09EAA174A3C5600FB1FAF /* FBViechleViewController.h */,
 				5BA09EAB174A3C5600FB1FAF /* FBViechleViewController.m */,
+				5B0E107C174CB959008E4AF5 /* FBViechlesViewController.h */,
+				5B0E107D174CB95A008E4AF5 /* FBViechlesViewController.m */,
+				5B0E1081174CC072008E4AF5 /* FBDriversViewController.h */,
+				5B0E1082174CC072008E4AF5 /* FBDriversViewController.m */,
+				5B0E108C174D086F008E4AF5 /* FBDriverViewController.h */,
+				5B0E108D174D086F008E4AF5 /* FBDriverViewController.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -163,10 +184,12 @@
 		5B22B85817402D7D00577209 /* Objects */ = {
 			isa = PBXGroup;
 			children = (
+				5B0E1084174CD899008E4AF5 /* ViechleProfile.h */,
+				5B0E1085174CD899008E4AF5 /* ViechleProfile.m */,
 				5BA09EA1174A3BC100FB1FAF /* SpeedData.h */,
 				5BA09EA2174A3BC100FB1FAF /* SpeedData.m */,
-				5BA09EA4174A3BD400FB1FAF /* ViechleProfile.h */,
-				5BA09EA5174A3BD400FB1FAF /* ViechleProfile.m */,
+				5B0E1089174D07DB008E4AF5 /* DriversProfile.h */,
+				5B0E108A174D07DB008E4AF5 /* DriversProfile.m */,
 			);
 			name = Objects;
 			sourceTree = "<group>";
@@ -178,6 +201,8 @@
 				5B8A895F17353C2400E77A6A /* FBVicleCellView.m */,
 				5B8A89741735844000E77A6A /* FBDrivingLogCell.h */,
 				5B8A89751735844000E77A6A /* FBDrivingLogCell.m */,
+				5B0E1070174CB2A4008E4AF5 /* FBDriverCell.h */,
+				5B0E1071174CB2A4008E4AF5 /* FBDriverCell.m */,
 			);
 			name = "Custom cells";
 			sourceTree = "<group>";
@@ -393,8 +418,13 @@
 				5B8CA156174563E600846384 /* MMPDeepSleepPreventer.m in Sources */,
 				5BA56DF317478C2F006F0D1A /* TTLocationHandler.m in Sources */,
 				5BA09EA3174A3BC100FB1FAF /* SpeedData.m in Sources */,
-				5BA09EA6174A3BD400FB1FAF /* ViechleProfile.m in Sources */,
 				5BA09EAC174A3C5600FB1FAF /* FBViechleViewController.m in Sources */,
+				5B0E1072174CB2A4008E4AF5 /* FBDriverCell.m in Sources */,
+				5B0E107E174CB95A008E4AF5 /* FBViechlesViewController.m in Sources */,
+				5B0E1083174CC072008E4AF5 /* FBDriversViewController.m in Sources */,
+				5B0E1086174CD899008E4AF5 /* ViechleProfile.m in Sources */,
+				5B0E108B174D07DC008E4AF5 /* DriversProfile.m in Sources */,
+				5B0E108E174D086F008E4AF5 /* FBDriverViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -433,7 +463,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: John Zanjani (36NDMZPNMY)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: John Zanjani (36NDMZPNMY)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -449,7 +479,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "2904613A-AF93-44CA-92D8-5EEF655E28FE";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "2904613A-AF93-44CA-92D8-5EEF655E28FE";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;

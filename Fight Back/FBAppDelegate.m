@@ -25,8 +25,8 @@
     FBMasterViewController *controller = (FBMasterViewController *)navigationController.topViewController;
     controller.managedObjectContext = self.managedObjectContext;
     
-    self.deepSleepPreventer = [[MMPDeepSleepPreventer alloc] init];
-	[self.deepSleepPreventer startPreventSleep];
+    /*self.deepSleepPreventer = [[MMPDeepSleepPreventer alloc] init];
+	[self.deepSleepPreventer startPreventSleep];*/
     
     self.locationController = [[FBCLController alloc] init];
     [self.locationController.locationManager startUpdatingLocation];

@@ -38,7 +38,7 @@
     NSString *day;
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"HH:mm:ss MM/dd/yyyy"];
+    [formatter setDateFormat:@"HH:mm:ss"];
     
     for (int i = 0; i<[self.logData count]; i++) {
         SpeedData* thisSpeedData = [self.logData objectAtIndex:i];

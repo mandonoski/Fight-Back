@@ -1,24 +1,24 @@
 //
-//  FBViechleViewController.m
+//  FBDriverViewController.m
 //  Fight Back
 //
-//  Created by martin on 5/20/13.
+//  Created by martin on 5/22/13.
 //  Copyright (c) 2013 Martin. All rights reserved.
 //
 
-#import "FBViechleViewController.h"
+#import "FBDriverViewController.h"
 
-@interface FBViechleViewController ()
+@interface FBDriverViewController ()
 
 @property (nonatomic, weak) IBOutlet UIButton *submitButton;
 @property (nonatomic, weak) IBOutlet UISwitch *active;
 @property (nonatomic, weak) IBOutlet UITextField *nameTextField;
-@property (nonatomic, weak) IBOutlet UITextField *makeTextField;
-@property (nonatomic, weak) IBOutlet UITextField *colorTextField;
-@property (nonatomic, weak) IBOutlet UITextField *yearTextField;
-@property (nonatomic, weak) IBOutlet UITextField *LPStateTextField;
-@property (nonatomic, weak) IBOutlet UITextField *LPNumberTextField;
-@property (nonatomic, weak) IBOutlet UITextField *VIMTextField;
+@property (nonatomic, weak) IBOutlet UITextField *surenameTextField;
+@property (nonatomic, weak) IBOutlet UITextField *DLNumberTextField;
+@property (nonatomic, weak) IBOutlet UITextField *DLStateTextField;
+@property (nonatomic, weak) IBOutlet UITextField *DLExpirationTextField;
+@property (nonatomic, weak) IBOutlet UITextField *InsurenceCompanyTextField;
+@property (nonatomic, weak) IBOutlet UITextField *InsurancePolicyNumberTextField;
 @property (nonatomic, weak) IBOutlet UILabel *titleLabel;
 @property (nonatomic, weak) IBOutlet UIScrollView *containerView;
 
@@ -32,15 +32,19 @@
 # define ALIGN_CENTER UITextAlignmentCenter
 #endif
 
+
 - (IBAction)tapRecognized:(id)sender;
+- (IBAction)dissmisPressed:(id)sender;
+- (IBAction)addButtonPressed:(id)sender;
 
 @end
 
-@implementation FBViechleViewController
+@implementation FBDriverViewController
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+	// Do any additional setup after loading the view.
     appDelegate = (FBAppDelegate *)[[UIApplication sharedApplication] delegate];
     self.offImage = [UIImage imageNamed:@"no.png"];
     self.onImage = [UIImage imageNamed:@"yes.png"];
@@ -51,27 +55,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillAppear:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillDisappear:) name:UIKeyboardWillHideNotification object:nil];
     
-    self.textFields = [[NSArray alloc] initWithObjects:self.nameTextField, self.makeTextField, self.colorTextField, self.yearTextField, self.LPStateTextField, self.LPNumberTextField, self.VIMTextField, nil];
-
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    
-    if (self.isEditing) {
-        self.nameTextField.text = self.editingProfile.name;
-        self.makeTextField.text = self.editingProfile.make;
-        self.colorTextField.text = self.editingProfile.color;
-        self.yearTextField.text = self.editingProfile.year;
-        self.active.on = [self.editingProfile.active boolValue];
-        self.LPStateTextField.text = self.editingProfile.lpState;
-        self.LPNumberTextField.text = self.editingProfile.lpNumber;
-        self.VIMTextField.text = self.editingProfile.vin;
-        
-        self.submitButton.titleLabel.text = @"Save";
-        self.titleLabel.text = @"Edit Viechle";
-    }
+    self.textFields = [[NSArray alloc] initWithObjects:self.nameTextField, self.surenameTextField, self.DLExpirationTextField, self.DLNumberTextField, self.DLStateTextField, self.InsurancePolicyNumberTextField, self.InsurenceCompanyTextField, nil];
 }
 
 #pragma mark - Internal Functyonalerty
@@ -80,24 +64,24 @@
 {
     
     [self.nameTextField resignFirstResponder];
-    [self.colorTextField resignFirstResponder];
-    [self.makeTextField resignFirstResponder];
-    [self.yearTextField resignFirstResponder];
-    [self.VIMTextField resignFirstResponder];
-    [self.LPStateTextField resignFirstResponder];
-    [self.LPNumberTextField resignFirstResponder];
+    [self.surenameTextField resignFirstResponder];
+    [self.DLExpirationTextField resignFirstResponder];
+    [self.DLNumberTextField resignFirstResponder];
+    [self.DLStateTextField resignFirstResponder];
+    [self.InsurancePolicyNumberTextField resignFirstResponder];
+    [self.InsurenceCompanyTextField resignFirstResponder];
     
 }
 
 - (void) editProfile
 {
-    self.editingProfile.name = self.nameTextField.text;
-    self.editingProfile.color = self.colorTextField.text;
-    self.editingProfile.make = self.makeTextField.text;
-    self.editingProfile.year = self.yearTextField.text;
-    self.editingProfile.vin = self.VIMTextField.text;
-    self.editingProfile.lpNumber = self.LPNumberTextField.text;
-    self.editingProfile.lpState = self.LPStateTextField.text;
+    self.editingProfile.firstName = self.nameTextField.text;
+    self.editingProfile.lastName = self.surenameTextField.text;
+    self.editingProfile.dlState = self.DLStateTextField.text;
+    self.editingProfile.dlNumber = self.DLNumberTextField.text;
+    self.editingProfile.dlExpiration = self.DLExpirationTextField.text;
+    self.editingProfile.insuranceCompany = self.InsurenceCompanyTextField.text;
+    self.editingProfile.insurancePolicyNumber = self.InsurancePolicyNumberTextField.text;
     
     BOOL active = self.active.on;
     self.editingProfile.active = [NSNumber numberWithBool:active];
@@ -107,21 +91,21 @@
 {
     NSManagedObjectContext *context = [appDelegate managedObjectContext];
     
-    ViechleProfile *viechleProfile = [NSEntityDescription insertNewObjectForEntityForName:@"ViechleProfile" inManagedObjectContext:context];
-    viechleProfile.name = self.nameTextField.text;
-    viechleProfile.color = self.colorTextField.text;
-    viechleProfile.make = self.makeTextField.text;
-    viechleProfile.year = self.yearTextField.text;
-    viechleProfile.vin = self.VIMTextField.text;
-    viechleProfile.lpNumber = self.LPNumberTextField.text;
-    viechleProfile.lpState = self.LPStateTextField.text;
+    DriversProfile *driverProfile = [NSEntityDescription insertNewObjectForEntityForName:@"DriversProfile" inManagedObjectContext:context];
+    driverProfile.firstName = self.nameTextField.text;
+    driverProfile.lastName = self.surenameTextField.text;
+    driverProfile.dlState = self.DLStateTextField.text;
+    driverProfile.dlNumber = self.DLNumberTextField.text;
+    driverProfile.dlExpiration = self.DLExpirationTextField.text;
+    driverProfile.insuranceCompany = self.InsurenceCompanyTextField.text;
+    driverProfile.insurancePolicyNumber = self.InsurancePolicyNumberTextField.text;
     
     BOOL active = self.active.on;
-    viechleProfile.active = [NSNumber numberWithBool:active];
-
+    driverProfile.active = [NSNumber numberWithBool:active];
+    
 }
 
-- (void) setAllViechlesInactive
+- (void) setAllDriversInactive
 {
     
     NSError *error;
@@ -131,17 +115,17 @@
     
     NSManagedObjectContext *context = [appDelegate managedObjectContext];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"ViechleProfile"
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"DriversProfile"
                                               inManagedObjectContext:context];
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"active == %@",[NSNumber numberWithBool:YES]];
     [fetchRequest setPredicate:predicate];
     [fetchRequest setEntity:entity];
     
     NSArray *data = [context executeFetchRequest:fetchRequest error:&error];
-
+    
     if ([data count] > 0) {
-        ViechleProfile *activeViechle = [data objectAtIndex:0];
-        activeViechle.active = [NSNumber numberWithBool:NO];
+        DriversProfile *activeDriver = [data objectAtIndex:0];
+        activeDriver.active = [NSNumber numberWithBool:NO];
         NSError *error;
         if (![[appDelegate managedObjectContext] save:&error]) {
             NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
@@ -153,9 +137,7 @@
 - (BOOL) validateForm{
     
     if ([self.nameTextField.text isEqualToString:@""] ||
-        [self.makeTextField.text isEqualToString:@""] ||
-        [self.colorTextField.text isEqualToString:@""] ||
-        [self.yearTextField.text isEqualToString:@""]) {
+        [self.surenameTextField.text isEqualToString:@""]) {
         return NO;
     }
     
@@ -177,7 +159,7 @@
     
     if (valid) {
         if (self.active.on) {
-            [self setAllViechlesInactive];
+            [self setAllDriversInactive];
         }
         
         if (self.isEditing) {
@@ -196,7 +178,7 @@
     }
     else {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error!"
-                                                        message:@"Fields: Year, Make, Model and Color are requered"
+                                                        message:@"Fields: First Name and Last Name are requered"
                                                        delegate:self
                                               cancelButtonTitle:@"OK"
                                               otherButtonTitles:nil];
@@ -221,7 +203,7 @@
         if ([thisTextFIeld isFirstResponder]) {
             contentOffset = thisTextFIeld.frame.origin.y-8;
         }
-    }   
+    }
     
     float permitedOffset = self.view.frame.size.height - keyboardFrame.size.height + contentOffset;
     if (permitedOffset > self.containerView.frame.size.height) {
@@ -232,11 +214,11 @@
         
         
         self.view.frame = CGRectMake(0,
-                                    self.view.frame.origin.y,
-                                    self.view.frame.size.width,
-                                    (self.view.frame.size.height - keyboardFrame.size.height));
+                                     self.view.frame.origin.y,
+                                     self.view.frame.size.width,
+                                     (self.view.frame.size.height - keyboardFrame.size.height));
         [self.containerView setContentSize:CGSizeMake(self.containerView.frame.size.width,
-                                                     (height))];
+                                                      (height))];
         [self.containerView setContentOffset:CGPointMake(0, contentOffset) animated:YES];
     }];
     
@@ -246,10 +228,10 @@
 {
     
     CGRect keyboardFrame = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
-        
+    
     [UIView animateWithDuration:0.3 animations:^{
         float height = self.view.frame.size.height;
-
+        
         self.view.frame = CGRectMake(0,
                                      self.view.frame.origin.y,
                                      self.view.frame.size.width,
@@ -260,6 +242,5 @@
     }];
     
 }
-
 
 @end

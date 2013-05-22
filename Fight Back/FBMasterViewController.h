@@ -10,7 +10,8 @@
 #import "FBCLController.h"
 #import "FBAppDelegate.h"
 
-@interface FBMasterViewController : UIViewController <UITableViewDataSource, UITabBarDelegate>{
+@interface FBMasterViewController : UIViewController <UITableViewDataSource>{
+    
     FBCLController *locationController;
     BOOL isRecording;
     NSTimer *timer;
