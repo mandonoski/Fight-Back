@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FBCustomLabel.h"
 
 @interface FBVicleCellView : UITableViewCell
 
-@property (nonatomic, strong) UILabel *yearAndColorLabel;
-@property (nonatomic, strong) UILabel *name;
+@property (nonatomic, strong) FBCustomLabel *yearAndColorLabel;
+@property (nonatomic, strong) FBCustomLabel *name;
 
 @end

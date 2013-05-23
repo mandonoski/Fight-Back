@@ -7,19 +7,21 @@
 //
 
 #import "FBDriverViewController.h"
+#import "FBCustomTextField.h"
+#import "FBCustomLabel.h"
 
 @interface FBDriverViewController ()
 
 @property (nonatomic, weak) IBOutlet UIButton *submitButton;
 @property (nonatomic, weak) IBOutlet UISwitch *active;
-@property (nonatomic, weak) IBOutlet UITextField *nameTextField;
-@property (nonatomic, weak) IBOutlet UITextField *surenameTextField;
-@property (nonatomic, weak) IBOutlet UITextField *DLNumberTextField;
-@property (nonatomic, weak) IBOutlet UITextField *DLStateTextField;
-@property (nonatomic, weak) IBOutlet UITextField *DLExpirationTextField;
-@property (nonatomic, weak) IBOutlet UITextField *InsurenceCompanyTextField;
-@property (nonatomic, weak) IBOutlet UITextField *InsurancePolicyNumberTextField;
-@property (nonatomic, weak) IBOutlet UILabel *titleLabel;
+@property (nonatomic, weak) IBOutlet FBCustomTextField *nameTextField;
+@property (nonatomic, weak) IBOutlet FBCustomTextField *surenameTextField;
+@property (nonatomic, weak) IBOutlet FBCustomTextField *DLNumberTextField;
+@property (nonatomic, weak) IBOutlet FBCustomTextField *DLStateTextField;
+@property (nonatomic, weak) IBOutlet FBCustomTextField *DLExpirationTextField;
+@property (nonatomic, weak) IBOutlet FBCustomTextField *InsurenceCompanyTextField;
+@property (nonatomic, weak) IBOutlet FBCustomTextField *InsurancePolicyNumberTextField;
+@property (nonatomic, weak) IBOutlet FBCustomLabel *titleLabel;
 @property (nonatomic, weak) IBOutlet UIScrollView *containerView;
 
 @property(nonatomic, strong) UIImage *offImage;
@@ -56,6 +58,26 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillDisappear:) name:UIKeyboardWillHideNotification object:nil];
     
     self.textFields = [[NSArray alloc] initWithObjects:self.nameTextField, self.surenameTextField, self.DLExpirationTextField, self.DLNumberTextField, self.DLStateTextField, self.InsurancePolicyNumberTextField, self.InsurenceCompanyTextField, nil];
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    
+    [super viewWillAppear:animated];
+    
+    if (self.isEditing) {
+        self.nameTextField.text = self.editingProfile.firstName;
+        self.surenameTextField.text = self.editingProfile.lastName;
+        self.DLStateTextField.text = self.editingProfile.dlState;
+        self.DLNumberTextField.text = self.editingProfile.dlNumber;
+        self.DLExpirationTextField.text = self.editingProfile.dlExpiration;
+        self.InsurenceCompanyTextField.text = self.editingProfile.insuranceCompany;
+        self.InsurancePolicyNumberTextField.text = self.editingProfile.insurancePolicyNumber;
+        self.active.on = [self.editingProfile.active boolValue];
+        
+        self.submitButton.titleLabel.text = @"Save";
+        self.titleLabel.text = @"Edit Driver";
+    }
+    
 }
 
 #pragma mark - Internal Functyonalerty

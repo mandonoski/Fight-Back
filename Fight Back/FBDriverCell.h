@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FBCustomLabel.h"
 
 @interface FBDriverCell : UITableViewCell
 
-@property (nonatomic, strong) UILabel *nameLabel;
-@property (nonatomic, strong) UILabel *surnameLabel;
+@property (nonatomic, strong) FBCustomLabel *nameLabel;
+@property (nonatomic, strong) FBCustomLabel *surnameLabel;
 
 @end

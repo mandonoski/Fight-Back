@@ -18,6 +18,7 @@
 @interface FBMasterViewController ()
 
 @property (nonatomic, strong) IBOutlet UIView *tableViewHolder;
+@property (nonatomic, strong) IBOutlet UIButton *recordButton;
 
 @property (nonatomic, strong) FBViechlesViewController *viechlesView;
 @property (nonatomic, strong) FBDriversViewController *driversView;
@@ -98,6 +99,7 @@
         isRecording = NO;
         [self.repeatingTimer invalidate];
         self.repeatingTimer = nil;
+        [self.recordButton setImage:[UIImage imageNamed:@"record.png"] forState:UIControlStateNormal];
         //appDelegate.sharedLocationHandler.writesToDatabase = NO;
     }
     else {
@@ -111,6 +113,7 @@
                                                              selector:@selector(targetMethod:)
                                                              userInfo:[self userInfo]
                                                               repeats:YES];
+        [self.recordButton setImage:[UIImage imageNamed:@"stop_record.png"] forState:UIControlStateNormal];
         /*NSRunLoop *loop = [NSRunLoop currentRunLoop];
         [loop addTimer:self.repeatingTimer forMode:NSRunLoopCommonModes];
         [loop run];*/

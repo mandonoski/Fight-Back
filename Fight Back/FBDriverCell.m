@@ -16,17 +16,13 @@
     if (self) {
         UIView *containerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 60)];
         
-        UIColor *fontColor = [UIColor colorWithRed:121/255 green:121/255 blue:121/255 alpha:1];
-        
-        self.nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 5, 200, 20)];
+        self.nameLabel = [[FBCustomLabel alloc] initWithFrame:CGRectMake(30, 5, 200, 20)];
         self.nameLabel.backgroundColor = [UIColor clearColor];
-        self.nameLabel.textColor = fontColor;
         [containerView addSubview:self.nameLabel];
         self.nameLabel.text = @"Name";
         
-        self.surnameLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 30, 200, 25)];
+        self.surnameLabel = [[FBCustomLabel alloc] initWithFrame:CGRectMake(30, 30, 200, 25)];
         self.surnameLabel.backgroundColor = [UIColor clearColor];
-        self.surnameLabel.textColor = fontColor;
         [containerView addSubview:self.surnameLabel];
         self.surnameLabel.text = @"Surname";
         

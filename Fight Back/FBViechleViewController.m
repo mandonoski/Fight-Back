@@ -7,19 +7,21 @@
 //
 
 #import "FBViechleViewController.h"
+#import "FBCustomTextField.h"
+#import "FBCustomLabel.h"
 
 @interface FBViechleViewController ()
 
 @property (nonatomic, weak) IBOutlet UIButton *submitButton;
 @property (nonatomic, weak) IBOutlet UISwitch *active;
-@property (nonatomic, weak) IBOutlet UITextField *nameTextField;
-@property (nonatomic, weak) IBOutlet UITextField *makeTextField;
-@property (nonatomic, weak) IBOutlet UITextField *colorTextField;
-@property (nonatomic, weak) IBOutlet UITextField *yearTextField;
-@property (nonatomic, weak) IBOutlet UITextField *LPStateTextField;
-@property (nonatomic, weak) IBOutlet UITextField *LPNumberTextField;
-@property (nonatomic, weak) IBOutlet UITextField *VIMTextField;
-@property (nonatomic, weak) IBOutlet UILabel *titleLabel;
+@property (nonatomic, weak) IBOutlet FBCustomTextField *nameTextField;
+@property (nonatomic, weak) IBOutlet FBCustomTextField *makeTextField;
+@property (nonatomic, weak) IBOutlet FBCustomTextField *colorTextField;
+@property (nonatomic, weak) IBOutlet FBCustomTextField *yearTextField;
+@property (nonatomic, weak) IBOutlet FBCustomTextField *LPStateTextField;
+@property (nonatomic, weak) IBOutlet FBCustomTextField *LPNumberTextField;
+@property (nonatomic, weak) IBOutlet FBCustomTextField *VIMTextField;
+@property (nonatomic, weak) IBOutlet FBCustomLabel *titleLabel;
 @property (nonatomic, weak) IBOutlet UIScrollView *containerView;
 
 @property(nonatomic, strong) UIImage *offImage;

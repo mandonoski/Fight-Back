@@ -9,15 +9,20 @@
 #import "FBDrivingLog.h"
 #import "FBDrivingLogCell.h"
 #import "SpeedData.h"
+#import "DriversProfile.h"
+#import "ViechleProfile.h"
+#import "FBCustomLabel.h"
 
 @interface FBDrivingLog ()
 
 @property (nonatomic, strong) NSArray *logData;
-@property (nonatomic, weak) IBOutlet UILabel *averageSpeedLabel;
-@property (nonatomic, weak) IBOutlet UILabel *maxSpeedLabel;
-@property (nonatomic, weak) IBOutlet UILabel *startDateLabel;
-@property (nonatomic, weak) IBOutlet UILabel *endDateLabel;
-@property (nonatomic, weak) IBOutlet UILabel *day;
+@property (nonatomic, weak) IBOutlet FBCustomLabel *averageSpeedLabel;
+@property (nonatomic, weak) IBOutlet FBCustomLabel *maxSpeedLabel;
+@property (nonatomic, weak) IBOutlet FBCustomLabel *startDateLabel;
+@property (nonatomic, weak) IBOutlet FBCustomLabel *endDateLabel;
+@property (nonatomic, weak) IBOutlet FBCustomLabel *day;
+@property (nonatomic, weak) IBOutlet FBCustomLabel *driverName;
+@property (nonatomic, weak) IBOutlet FBCustomLabel *viechleName;
 
 @end
 
@@ -27,7 +32,7 @@
 {
     [super viewDidLoad];
         
-    appDelegate = [[FBAppDelegate alloc] init];
+    appDelegate = (FBAppDelegate *)[[UIApplication sharedApplication] delegate];
         
     self.logData = [appDelegate generateLog];
     
@@ -60,7 +65,23 @@
     self.startDateLabel.text = stratDate;
     self.endDateLabel.text = endDate;
     self.day.text = day;
-	
+    
+    DriversProfile *activeDriver = [appDelegate getActiveDriver];
+    ViechleProfile *activeViechle = [appDelegate getActiveViechle];
+	if (activeDriver) {
+        self.driverName.text = [activeDriver.firstName stringByAppendingFormat:@" %@",activeDriver.lastName];
+    }
+    else {
+        self.driverName.text = @"No driver set as active";
+    }
+    
+    if (activeViechle) {
+        self.viechleName.text = [activeViechle.name stringByAppendingFormat:@"/%@ %@",activeViechle.color, activeViechle.make];
+    }
+    else {
+        self.viechleName.text = @"No viechle set as active";
+    }
+    
 }
 
 - (void)didReceiveMemoryWarning

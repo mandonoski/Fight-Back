@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FBCustomLabel.h"
 
 @interface FBDrivingLogCell : UITableViewCell
 
-@property (nonatomic, strong) UILabel *dateLabel;
-@property (nonatomic, strong) UILabel *speedLabel;
-@property (nonatomic, strong) UILabel *noDataCell;
+@property (nonatomic, strong) FBCustomLabel *dateLabel;
+@property (nonatomic, strong) FBCustomLabel *speedLabel;
+@property (nonatomic, strong) FBCustomLabel *noDataCell;
 
 @end

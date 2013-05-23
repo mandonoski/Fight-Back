@@ -86,13 +86,14 @@
     
     ViechleProfile *thisViechle = [self.viechles objectAtIndex:indexPath.row];
     
-    cell.name.text = thisViechle.name;
-    cell.yearAndColorLabel.text = thisViechle.color;
+    cell.name.text = [thisViechle.make stringByAppendingFormat:@" %@",thisViechle.name];
+    cell.yearAndColorLabel.text = [thisViechle.year stringByAppendingFormat:@" / %@",thisViechle.color];
+    
     if ([thisViechle.active isEqualToNumber:[NSNumber numberWithBool:YES]]) {
-        cell.contentView.backgroundColor = [UIColor redColor];
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
     }
     else {
-        cell.contentView.backgroundColor = [UIColor clearColor];
+        cell.accessoryType = UITableViewCellAccessoryNone;
     }
     
     return cell;

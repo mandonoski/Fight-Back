@@ -10,11 +10,13 @@
 #import "FBDriverCell.h"
 #import "FBAppDelegate.h"
 #import "FBDriverViewController.h"
+#import "DriversProfile.h"
 
 @interface FBDriversViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, weak) IBOutlet UITableView *mainTable;
 
+@property (nonatomic, strong) NSArray *users;
 @property (nonatomic, strong) FBAppDelegate *appDelegate;
 
 - (IBAction)createRecord:(id)sender;
@@ -35,11 +37,42 @@
     
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self reloadTableData];
+}
+
+- (void) reloadTableData
+{
+    self.users = [NSArray arrayWithArray:[self getUsers]];
+    [self.mainTable reloadData];
+}
+
+- (NSArray *)getUsers{
+    
+    NSError *error;
+    if (![self.appDelegate.managedObjectContext save:&error]) {
+        NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+    }
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"DriversProfile"
+                                              inManagedObjectContext:self.appDelegate.managedObjectContext];
+    [fetchRequest setEntity:entity];
+    
+    NSArray *results = [self.appDelegate.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    
+    return results;
+    
+}
+
+
 #pragma mark - Table functionalety
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 20;
+    return [self.users count];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -57,12 +90,32 @@
         cell = [[FBDriverCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
+    DriversProfile *thisProfile = [self.users objectAtIndex:indexPath.row];
+    
+    cell.nameLabel.text = thisProfile.firstName;
+    cell.surnameLabel.text = thisProfile.lastName;
+    
+    if ([thisProfile.active isEqualToNumber:[NSNumber numberWithBool:YES]]) {
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    }
+    else {
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
+    
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+    FBDriverViewController *controller = (FBDriverViewController*)[mainStoryboard instantiateViewControllerWithIdentifier:@"FBDriverViewController"];
+    controller.isEditing = YES;
+    DriversProfile *thisViechle = [self.users objectAtIndex:indexPath.row];
+    controller.editingProfile = thisViechle;
+    [self presentViewController:controller animated:YES completion:nil];
+
     
 }
 

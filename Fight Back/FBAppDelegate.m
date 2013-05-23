@@ -208,6 +208,60 @@
     
 }
 
+- (DriversProfile *) getActiveDriver
+{
+    
+    NSError *error;
+    if (![[self managedObjectContext] save:&error]) {
+        NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+    }
+    
+    NSManagedObjectContext *context = [self managedObjectContext];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"DriversProfile"
+                                              inManagedObjectContext:context];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"active == %@",[NSNumber numberWithBool:YES]];
+    [fetchRequest setPredicate:predicate];
+    [fetchRequest setEntity:entity];
+    
+    NSArray *data = [context executeFetchRequest:fetchRequest error:&error];
+    if ([data count]>0) {
+        return [data objectAtIndex:0];
+    }
+    else {
+        return  nil;
+    }
+    
+}
+
+- (ViechleProfile *) getActiveViechle
+{
+    
+    NSError *error;
+    if (![[self managedObjectContext] save:&error]) {
+        NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+    }
+    
+    NSManagedObjectContext *context = [self managedObjectContext];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"ViechleProfile"
+                                              inManagedObjectContext:context];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"active == %@",[NSNumber numberWithBool:YES]];
+    [fetchRequest setPredicate:predicate];
+    [fetchRequest setEntity:entity];
+    
+    NSArray *data = [context executeFetchRequest:fetchRequest error:&error];
+    
+    if ([data count]>0) {
+        return [data objectAtIndex:0];
+    }
+    else {
+        return nil;
+    }
+    
+}
+
+
 + (void) gpsOn
 {	
 	/*locationController = [[FBCLController alloc] init];

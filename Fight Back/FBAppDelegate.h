@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "MMPDeepSleepPreventer.h"
 #import "FBCLController.h"
+#import "DriversProfile.h"
+#import "ViechleProfile.h"
 
 @class TTLocationHandler;
 
@@ -29,5 +31,7 @@
 - (NSArray *)generateLog;
 + (void) gpsOn;
 + (void) gpsOff;
+- (ViechleProfile *) getActiveViechle;
+- (DriversProfile *) getActiveDriver;
 
 @end
