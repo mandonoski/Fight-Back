@@ -13,8 +13,6 @@
 #import "FBViechlesViewController.h"
 #import "FBDriversViewController.h"
 
-#define CONVERSION_RATE 1000
-
 @interface FBMasterViewController ()
 
 @property (nonatomic, strong) IBOutlet UIView *tableViewHolder;
@@ -64,6 +62,7 @@
     self.driversView.view.alpha = 0;
 }
 
+
 #pragma mark - dbHelper
 
 - (void) saveContext{
@@ -95,30 +94,57 @@
 
 - (IBAction)recordPressed:(id)sender{
     
-    if(isRecording){
-        isRecording = NO;
-        [self.repeatingTimer invalidate];
-        self.repeatingTimer = nil;
-        [self.recordButton setImage:[UIImage imageNamed:@"record.png"] forState:UIControlStateNormal];
-        //appDelegate.sharedLocationHandler.writesToDatabase = NO;
+    if ([appDelegate checkIfUsersAreAdded] && [appDelegate checkIfViechlesAreAdded]) {
+        if ([appDelegate getActiveDriver] && [appDelegate getActiveViechle]) {
+            if(isRecording){
+                isRecording = NO;
+                [self.repeatingTimer invalidate];
+                self.repeatingTimer = nil;
+                [self.recordButton setImage:[UIImage imageNamed:@"record.png"] forState:UIControlStateNormal];
+            }
+            else {
+                isRecording = YES;
+                
+                NSLog(@"Location: %@", [locationController.locationManager.location description]);
+                [self writeInDbWithLocation:locationController.locationManager.location];
+                
+                self.repeatingTimer = [NSTimer scheduledTimerWithTimeInterval:10.0
+                                                                       target:self
+                                                                     selector:@selector(targetMethod:)
+                                                                     userInfo:[self userInfo]
+                                                                      repeats:YES];
+                [self.recordButton setImage:[UIImage imageNamed:@"stop_record.png"] forState:UIControlStateNormal];
+            }
+        }
+        else {
+            UIAlertView *alert = [[UIAlertView alloc]
+                                  initWithTitle: @"Error"
+                                  message: @"No active driver or viechle selected"
+                                  delegate: nil
+                                  cancelButtonTitle:@"OK"
+                                  otherButtonTitles:nil];
+            [alert show];
+        }
     }
     else {
-        isRecording = YES;
+        if (![appDelegate checkIfViechlesAreAdded]){
+            UIAlertView *alert = [[UIAlertView alloc]
+                                  initWithTitle: @"Error"
+                                  message: @"No Viechles added. You need to add and make one active to be able to generate log"
+                                  delegate: nil
+                                  cancelButtonTitle:@"OK"
+                                  otherButtonTitles:nil];
+            [alert show];
+        } else if (![appDelegate checkIfUsersAreAdded]) {
+            UIAlertView *alert = [[UIAlertView alloc]
+                                  initWithTitle: @"Error"
+                                  message: @"No drivers added. You need to add and make one active to be able to generate log"
+                                  delegate: nil
+                                  cancelButtonTitle:@"OK"
+                                  otherButtonTitles:nil];
+            [alert show];
+        }
         
-        NSLog(@"Location: %@", [locationController.locationManager.location description]);
-        [self writeInDbWithLocation:locationController.locationManager.location];
-        
-        self.repeatingTimer = [NSTimer scheduledTimerWithTimeInterval:10.0
-                                                               target:self
-                                                             selector:@selector(targetMethod:)
-                                                             userInfo:[self userInfo]
-                                                              repeats:YES];
-        [self.recordButton setImage:[UIImage imageNamed:@"stop_record.png"] forState:UIControlStateNormal];
-        /*NSRunLoop *loop = [NSRunLoop currentRunLoop];
-        [loop addTimer:self.repeatingTimer forMode:NSRunLoopCommonModes];
-        [loop run];*/
-
-        //appDelegate.sharedLocationHandler.writesToDatabase = YES;
     }
     
 }
@@ -172,7 +198,7 @@
     
     NSManagedObjectContext *context = [appDelegate managedObjectContext];
     SpeedData *speedData = [NSEntityDescription insertNewObjectForEntityForName:@"SpeedData" inManagedObjectContext:context];
-    speedData.speed = [@"" stringByAppendingFormat:@"%f",([currentLocation speed]*3600/CONVERSION_RATE)];
+    speedData.speed = [@"" stringByAppendingFormat:@"%f",[currentLocation speed]];
     speedData.latitute = [@"" stringByAppendingFormat:@"%f",currentLocation.coordinate.latitude];
     speedData.lontitude = [@"" stringByAppendingFormat:@"%f",currentLocation.coordinate.longitude];
     speedData.timeStamp = [NSDate date];

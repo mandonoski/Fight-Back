@@ -13,6 +13,7 @@
 @interface FBViechleViewController ()
 
 @property (nonatomic, weak) IBOutlet UIButton *submitButton;
+@property (nonatomic, weak) IBOutlet UIButton *deleteButton;
 @property (nonatomic, weak) IBOutlet UISwitch *active;
 @property (nonatomic, weak) IBOutlet FBCustomTextField *nameTextField;
 @property (nonatomic, weak) IBOutlet FBCustomTextField *makeTextField;
@@ -35,6 +36,7 @@
 #endif
 
 - (IBAction)tapRecognized:(id)sender;
+- (IBAction)deleteButtonPressed:(id)sender;
 
 @end
 
@@ -73,6 +75,9 @@
         
         self.submitButton.titleLabel.text = @"Save";
         self.titleLabel.text = @"Edit Viechle";
+    }
+    else {
+        self.deleteButton.hidden = YES;
     }
 }
 
@@ -209,6 +214,17 @@
 
 - (IBAction)tapRecognized:(id)sender{
     [self dismissKeyboard];
+}
+
+- (IBAction)deleteButtonPressed:(id)sender{
+    NSError *error;
+    if (![[appDelegate managedObjectContext] save:&error]) {
+        NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+    }
+    
+    NSManagedObjectContext *context = [appDelegate managedObjectContext];
+    [context deleteObject:self.editingProfile];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - UIKeyboard Notifications

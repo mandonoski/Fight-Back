@@ -33,5 +33,7 @@
 + (void) gpsOff;
 - (ViechleProfile *) getActiveViechle;
 - (DriversProfile *) getActiveDriver;
+- (BOOL) checkIfViechlesAreAdded;
+- (BOOL) checkIfUsersAreAdded;
 
 @end

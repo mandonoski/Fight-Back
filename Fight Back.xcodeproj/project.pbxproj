@@ -61,6 +61,7 @@
 		5BA09EB2174A3ED500FB1FAF /* no@2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BA09EAE174A3ED500FB1FAF /* no@2.png */; };
 		5BA09EB3174A3ED500FB1FAF /* yes.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BA09EAF174A3ED500FB1FAF /* yes.png */; };
 		5BA09EB4174A3ED500FB1FAF /* yes@2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BA09EB0174A3ED500FB1FAF /* yes@2.png */; };
+		5BA11BEA175CC07500BA0B35 /* beep-7.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5BA11BE9175CC07500BA0B35 /* beep-7.wav */; };
 		5BA56DF317478C2F006F0D1A /* TTLocationHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA56DF217478C2F006F0D1A /* TTLocationHandler.m */; };
 /* End PBXBuildFile section */
 
@@ -141,6 +142,7 @@
 		5BA09EAE174A3ED500FB1FAF /* no@2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "no@2.png"; sourceTree = "<group>"; };
 		5BA09EAF174A3ED500FB1FAF /* yes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yes.png; sourceTree = "<group>"; };
 		5BA09EB0174A3ED500FB1FAF /* yes@2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "yes@2.png"; sourceTree = "<group>"; };
+		5BA11BE9175CC07500BA0B35 /* beep-7.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "beep-7.wav"; sourceTree = "<group>"; };
 		5BA56DF117478C2F006F0D1A /* TTLocationHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTLocationHandler.h; sourceTree = "<group>"; };
 		5BA56DF217478C2F006F0D1A /* TTLocationHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTLocationHandler.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -342,6 +344,7 @@
 		5B8C6F6F1734E72900CF2C93 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5BA11BE8175CC06800BA0B35 /* Sounds */,
 				5B0E109F174E2FD7008E4AF5 /* Fonts */,
 				5B0E109E174E2FC8008E4AF5 /* Images */,
 			);
@@ -356,6 +359,14 @@
 				5B8CA155174563E600846384 /* MMPSilence.wav */,
 			);
 			path = MMPDeepSleepPreventer;
+			sourceTree = "<group>";
+		};
+		5BA11BE8175CC06800BA0B35 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				5BA11BE9175CC07500BA0B35 /* beep-7.wav */,
+			);
+			name = Sounds;
 			sourceTree = "<group>";
 		};
 		5BA56DF017478C2F006F0D1A /* LocationHandler */ = {
@@ -447,6 +458,7 @@
 				5B0E1094174E293D008E4AF5 /* Default.png in Resources */,
 				5B0E1096174E2953008E4AF5 /* Default@2x.png in Resources */,
 				5B0E1098174E295C008E4AF5 /* Default-568h@2x.png in Resources */,
+				5BA11BEA175CC07500BA0B35 /* beep-7.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

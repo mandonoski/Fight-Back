@@ -13,6 +13,9 @@
 #import "ViechleProfile.h"
 #import "FBCustomLabel.h"
 
+#define CONVERSION_RATE_KM 1000
+#define CONVERSION_RATE_M 1609.34
+
 @interface FBDrivingLog ()
 
 @property (nonatomic, strong) NSArray *logData;
@@ -23,6 +26,12 @@
 @property (nonatomic, weak) IBOutlet FBCustomLabel *day;
 @property (nonatomic, weak) IBOutlet FBCustomLabel *driverName;
 @property (nonatomic, weak) IBOutlet FBCustomLabel *viechleName;
+@property (nonatomic, weak) IBOutlet FBCustomLabel *mesurementType1;
+@property (nonatomic, weak) IBOutlet FBCustomLabel *mesurementType2;
+@property (nonatomic, weak) IBOutlet UITableView *mainTable;
+@property (nonatomic, weak) IBOutlet UISwitch *systemSwitch;
+
+@property (nonatomic) BOOL miles;
 
 @end
 
@@ -36,6 +45,28 @@
         
     self.logData = [appDelegate generateLog];
     
+    self.miles = YES;
+    
+    [self loadData];
+    
+}
+
+- (double) convertSpeed:(double) speed{
+    
+    double convertedValue = 0;
+    
+    if (self.miles) {
+        convertedValue = speed*3600/CONVERSION_RATE_M;
+    }
+    else{
+        convertedValue = speed*3600/CONVERSION_RATE_KM;
+    }
+    
+    return convertedValue;
+    
+}
+
+- (void)loadData{
     double max = 0.0;
     double average = 0.0;
     NSString *stratDate = @"";
@@ -60,8 +91,8 @@
         average += [thisSpeedData.speed doubleValue];
     }
     average = average/[self.logData count];
-    self.maxSpeedLabel.text = [@"" stringByAppendingFormat:@"%.02f",max];
-    self.averageSpeedLabel.text = [@"" stringByAppendingFormat:@"%.02f",average];
+    self.maxSpeedLabel.text = [@"" stringByAppendingFormat:@"%.02f",[self convertSpeed:max]];
+    self.averageSpeedLabel.text = [@"" stringByAppendingFormat:@"%.02f",[self convertSpeed:average]];
     self.startDateLabel.text = stratDate;
     self.endDateLabel.text = endDate;
     self.day.text = day;
@@ -82,11 +113,30 @@
         self.viechleName.text = @"No viechle set as active";
     }
     
+    if (self.miles) {
+        self.mesurementType1.text = @"MPH";
+        self.mesurementType2.text = @"MPH";
+    }
+    else {
+        self.mesurementType1.text = @"KMH";
+        self.mesurementType2.text = @"KMH";
+    }
+    
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+}
+
+#pragma mark - IBActions
+
+- (IBAction)switchPressed:(id)sender{
+    
+    self.miles = !self.miles;
+    [self loadData];
+    [self.mainTable reloadData];
+    
 }
 
 - (IBAction)dissmisPressed:(id)sender{
@@ -125,7 +175,16 @@
         
         cell.dateLabel.text = stringDateRepresentation;
         float speed = [thisRow.speed floatValue];
-        cell.speedLabel.text = [@"" stringByAppendingFormat:@"%.02f km/h",speed];
+        
+        NSString *indicator = @"";
+        if (self.miles) {
+            indicator = @"MPH";
+        }
+        else {
+            indicator = @"km/h";
+        }
+        
+        cell.speedLabel.text = [@"" stringByAppendingFormat:@"%.02f %@",[self convertSpeed:speed], indicator];
         cell.dateLabel.hidden = NO;
         cell.speedLabel.hidden = NO;
         cell.noDataCell.hidden = YES;

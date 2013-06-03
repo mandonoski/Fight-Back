@@ -84,6 +84,7 @@
 {
     // Saves changes in the application's managed object context before the application terminates.
     [self.deepSleepPreventer stopPreventSleep];
+    [self.locationController.locationManager stopUpdatingLocation];
     [self saveContext];
 }
 
@@ -261,6 +262,53 @@
     
 }
 
+- (BOOL) checkIfViechlesAreAdded{
+    
+    NSError *error;
+    if (![[self managedObjectContext] save:&error]) {
+        NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+    }
+    
+    NSManagedObjectContext *context = [self managedObjectContext];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"ViechleProfile"
+                                              inManagedObjectContext:context];
+    [fetchRequest setEntity:entity];
+    
+    NSArray *viechleData = [context executeFetchRequest:fetchRequest error:&error];
+    
+    if ([viechleData count] > 0) {
+        return YES;
+    }
+    else {
+        return NO;
+    }
+    
+}
+
+- (BOOL) checkIfUsersAreAdded{
+    
+    NSError *error;
+    if (![[self managedObjectContext] save:&error]) {
+        NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+    }
+    
+    NSManagedObjectContext *context = [self managedObjectContext];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"DriversProfile"
+                                              inManagedObjectContext:context];
+    [fetchRequest setEntity:entity];
+    
+    NSArray *userData = [context executeFetchRequest:fetchRequest error:&error];
+    
+    if ([userData count] > 0) {
+        return YES;
+    }
+    else {
+        return NO;
+    }
+    
+}
 
 + (void) gpsOn
 {	
