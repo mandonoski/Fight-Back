@@ -39,7 +39,6 @@
 		5B8C56251729BF6B00953C18 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B8C56241729BF6B00953C18 /* Default@2x.png */; };
 		5B8C56271729BF6B00953C18 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B8C56261729BF6B00953C18 /* Default-568h@2x.png */; };
 		5B8C562A1729BF6B00953C18 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B8C56281729BF6B00953C18 /* MainStoryboard.storyboard */; };
-		5B8C562D1729BF6B00953C18 /* Fight_Back.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5B8C562B1729BF6B00953C18 /* Fight_Back.xcdatamodeld */; };
 		5B8C563B1729C02200953C18 /* FBMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B8C563A1729C02200953C18 /* FBMasterViewController.m */; };
 		5B8C6F7A1734E74E00CF2C93 /* 5_content_new.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B8C6F701734E74E00CF2C93 /* 5_content_new.png */; };
 		5B8C6F7B1734E74E00CF2C93 /* driver.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B8C6F711734E74E00CF2C93 /* driver.png */; };
@@ -55,6 +54,7 @@
 		5B8CA157174563E600846384 /* MMPSilence.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5B8CA155174563E600846384 /* MMPSilence.wav */; };
 		5B8CA1591745650600846384 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B8CA1581745650600846384 /* AudioToolbox.framework */; };
 		5B8CA15B1745651100846384 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B8CA15A1745651100846384 /* AVFoundation.framework */; };
+		5B98CE991765C8B100E6AB70 /* Fight_Back.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5B98CE971765C8B100E6AB70 /* Fight_Back.xcdatamodeld */; };
 		5BA09EA3174A3BC100FB1FAF /* SpeedData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA09EA2174A3BC100FB1FAF /* SpeedData.m */; };
 		5BA09EAC174A3C5600FB1FAF /* FBViechleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA09EAB174A3C5600FB1FAF /* FBViechleViewController.m */; };
 		5BA09EB1174A3ED500FB1FAF /* no.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BA09EAD174A3ED500FB1FAF /* no.png */; };
@@ -116,7 +116,6 @@
 		5B8C56241729BF6B00953C18 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		5B8C56261729BF6B00953C18 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		5B8C56291729BF6B00953C18 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
-		5B8C562C1729BF6B00953C18 /* Fight_Back.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Fight_Back.xcdatamodel; sourceTree = "<group>"; };
 		5B8C56391729C02200953C18 /* FBMasterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBMasterViewController.h; sourceTree = "<group>"; };
 		5B8C563A1729C02200953C18 /* FBMasterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBMasterViewController.m; sourceTree = "<group>"; };
 		5B8C6F701734E74E00CF2C93 /* 5_content_new.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5_content_new.png; sourceTree = "<group>"; };
@@ -134,6 +133,9 @@
 		5B8CA155174563E600846384 /* MMPSilence.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = MMPSilence.wav; sourceTree = "<group>"; };
 		5B8CA1581745650600846384 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		5B8CA15A1745651100846384 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		5B98CE951765C89900E6AB70 /* LogDates.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogDates.h; sourceTree = "<group>"; };
+		5B98CE961765C89900E6AB70 /* LogDates.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LogDates.m; sourceTree = "<group>"; };
+		5B98CE981765C8B100E6AB70 /* Fight_Back.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Fight_Back.xcdatamodel; sourceTree = "<group>"; };
 		5BA09EA1174A3BC100FB1FAF /* SpeedData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeedData.h; sourceTree = "<group>"; };
 		5BA09EA2174A3BC100FB1FAF /* SpeedData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpeedData.m; sourceTree = "<group>"; };
 		5BA09EAA174A3C5600FB1FAF /* FBViechleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBViechleViewController.h; sourceTree = "<group>"; };
@@ -250,6 +252,8 @@
 		5B22B85817402D7D00577209 /* Objects */ = {
 			isa = PBXGroup;
 			children = (
+				5B98CE951765C89900E6AB70 /* LogDates.h */,
+				5B98CE961765C89900E6AB70 /* LogDates.m */,
 				5B0E1084174CD899008E4AF5 /* ViechleProfile.h */,
 				5B0E1085174CD899008E4AF5 /* ViechleProfile.m */,
 				5BA09EA1174A3BC100FB1FAF /* SpeedData.h */,
@@ -321,7 +325,7 @@
 				5B8C561F1729BF6B00953C18 /* FBAppDelegate.h */,
 				5B8C56201729BF6B00953C18 /* FBAppDelegate.m */,
 				5B8C56281729BF6B00953C18 /* MainStoryboard.storyboard */,
-				5B8C562B1729BF6B00953C18 /* Fight_Back.xcdatamodeld */,
+				5B98CE971765C8B100E6AB70 /* Fight_Back.xcdatamodeld */,
 				5B8C56171729BF6B00953C18 /* Supporting Files */,
 			);
 			path = "Fight Back";
@@ -471,7 +475,6 @@
 			files = (
 				5B8C561D1729BF6B00953C18 /* main.m in Sources */,
 				5B8C56211729BF6B00953C18 /* FBAppDelegate.m in Sources */,
-				5B8C562D1729BF6B00953C18 /* Fight_Back.xcdatamodeld in Sources */,
 				5B8C563B1729C02200953C18 /* FBMasterViewController.m in Sources */,
 				5B8A896017353C2400E77A6A /* FBVicleCellView.m in Sources */,
 				5B8A89731735625200E77A6A /* FBDrivingLog.m in Sources */,
@@ -489,6 +492,7 @@
 				5B0E108E174D086F008E4AF5 /* FBDriverViewController.m in Sources */,
 				5B0E109D174E2E3D008E4AF5 /* FBCustomTextField.m in Sources */,
 				5B0E10A5174E3108008E4AF5 /* FBCustomLabel.m in Sources */,
+				5B98CE991765C8B100E6AB70 /* Fight_Back.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -624,12 +628,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		5B8C562B1729BF6B00953C18 /* Fight_Back.xcdatamodeld */ = {
+		5B98CE971765C8B100E6AB70 /* Fight_Back.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				5B8C562C1729BF6B00953C18 /* Fight_Back.xcdatamodel */,
+				5B98CE981765C8B100E6AB70 /* Fight_Back.xcdatamodel */,
 			);
-			currentVersion = 5B8C562C1729BF6B00953C18 /* Fight_Back.xcdatamodel */;
+			currentVersion = 5B98CE981765C8B100E6AB70 /* Fight_Back.xcdatamodel */;
 			path = Fight_Back.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

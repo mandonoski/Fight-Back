@@ -631,6 +631,9 @@
                                         <state key="highlighted">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="buyPdfPressed:" destination="fUr-f5-3MG" eventType="touchUpInside" id="kaz-VM-LxX"/>
+                                        </connections>
                                     </button>
                                     <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="LBg-OA-wFl">
                                         <rect key="frame" x="9" y="424" width="79" height="27"/>
@@ -1003,7 +1006,9 @@
         <class className="FBDrivingLog" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FBDrivingLog.h"/>
             <relationships>
+                <relationship kind="action" name="buyPdfPressed:"/>
                 <relationship kind="action" name="dissmisPressed:"/>
+                <relationship kind="action" name="switchPressed:"/>
                 <relationship kind="outlet" name="averageSpeedLabel" candidateClass="FBCustomLabel"/>
                 <relationship kind="outlet" name="day" candidateClass="FBCustomLabel"/>
                 <relationship kind="outlet" name="driverName" candidateClass="FBCustomLabel"/>
@@ -1020,6 +1025,10 @@
         <class className="FBMasterViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FBMasterViewController.h"/>
             <relationships>
+                <relationship kind="action" name="driversPressed:"/>
+                <relationship kind="action" name="logPressed:"/>
+                <relationship kind="action" name="recordPressed:"/>
+                <relationship kind="action" name="viechlesPressed:"/>
                 <relationship kind="outlet" name="recordButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="tableViewHolder" candidateClass="UIView"/>
             </relationships>
@@ -1027,9 +1036,7 @@
         <class className="FBViechleViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FBViechleViewController.h"/>
             <relationships>
-                <relationship kind="action" name="addButtonPressed:"/>
                 <relationship kind="action" name="deleteButtonPressed:"/>
-                <relationship kind="action" name="dissmisPressed:"/>
                 <relationship kind="action" name="tapRecognized:"/>
                 <relationship kind="outlet" name="LPNumberTextField" candidateClass="FBCustomTextField"/>
                 <relationship kind="outlet" name="LPStateTextField" candidateClass="FBCustomTextField"/>
@@ -1048,6 +1055,7 @@
         <class className="FBViechlesViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FBViechlesViewController.h"/>
             <relationships>
+                <relationship kind="action" name="createRecord:"/>
                 <relationship kind="outlet" name="mainTable" candidateClass="UITableView"/>
             </relationships>
         </class>

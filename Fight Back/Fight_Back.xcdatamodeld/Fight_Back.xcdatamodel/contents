@@ -10,6 +10,11 @@
         <attribute name="insurancePolicyNumber" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
+    <entity name="LogDates" representedClassName="LogDates" syncable="YES">
+        <attribute name="boughtDate" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="end" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="start" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <entity name="SpeedData" representedClassName="SpeedData">
         <attribute name="dataIsValid" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="latitute" optional="YES" attributeType="String" syncable="YES"/>
@@ -31,8 +36,9 @@
         <attribute name="year" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
+        <element name="DriversProfile" positionX="-182" positionY="-459" width="128" height="163"/>
         <element name="SpeedData" positionX="124" positionY="-459" width="128" height="118"/>
         <element name="ViechleProfile" positionX="-27" positionY="-459" width="128" height="163"/>
-        <element name="DriversProfile" positionX="-182" positionY="-459" width="128" height="163"/>
+        <element name="LogDates" positionX="277" positionY="-459" width="128" height="88"/>
     </elements>
 </model>

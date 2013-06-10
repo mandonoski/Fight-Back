@@ -10,7 +10,7 @@
 #import "FBCustomTextField.h"
 #import "FBCustomLabel.h"
 
-@interface FBViechleViewController ()
+@interface FBViechleViewController () <UITextFieldDelegate>
 
 @property (nonatomic, weak) IBOutlet UIButton *submitButton;
 @property (nonatomic, weak) IBOutlet UIButton *deleteButton;
@@ -34,6 +34,8 @@
 #else
 # define ALIGN_CENTER UITextAlignmentCenter
 #endif
+
+#define CHARACTERS          @" ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
 
 - (IBAction)tapRecognized:(id)sender;
 - (IBAction)deleteButtonPressed:(id)sender;
@@ -59,12 +61,20 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillDisappear:) name:UIKeyboardWillHideNotification object:nil];
     
     self.textFields = [[NSArray alloc] initWithObjects:self.nameTextField, self.makeTextField, self.colorTextField, self.yearTextField, self.LPStateTextField, self.LPNumberTextField, self.VIMTextField, nil];
-
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    self.yearTextField.keyboardType = UIKeyboardTypeNumberPad;
+    self.VIMTextField.keyboardType = UIKeyboardTypeNumberPad;
+    
+    self.makeTextField.delegate = self;
+    self.nameTextField.delegate = self;
+    self.colorTextField.delegate = self;
+    self.LPStateTextField.delegate = self;
     
     if (self.isEditing) {
         self.nameTextField.text = self.editingProfile.name;
@@ -128,7 +138,7 @@
     
     BOOL active = self.active.on;
     viechleProfile.active = [NSNumber numberWithBool:active];
-
+    
 }
 
 - (void) setAllViechlesInactive
@@ -148,7 +158,7 @@
     [fetchRequest setEntity:entity];
     
     NSArray *data = [context executeFetchRequest:fetchRequest error:&error];
-
+    
     if ([data count] > 0) {
         ViechleProfile *activeViechle = [data objectAtIndex:0];
         activeViechle.active = [NSNumber numberWithBool:NO];
@@ -242,7 +252,7 @@
         if ([thisTextFIeld isFirstResponder]) {
             contentOffset = thisTextFIeld.frame.origin.y-8;
         }
-    }   
+    }
     
     float permitedOffset = self.view.frame.size.height - keyboardFrame.size.height + contentOffset;
     if (permitedOffset > self.containerView.frame.size.height) {
@@ -253,11 +263,11 @@
         
         
         self.view.frame = CGRectMake(0,
-                                    self.view.frame.origin.y,
-                                    self.view.frame.size.width,
-                                    (self.view.frame.size.height - keyboardFrame.size.height));
+                                     self.view.frame.origin.y,
+                                     self.view.frame.size.width,
+                                     (self.view.frame.size.height - keyboardFrame.size.height));
         [self.containerView setContentSize:CGSizeMake(self.containerView.frame.size.width,
-                                                     (height))];
+                                                      (height))];
         [self.containerView setContentOffset:CGPointMake(0, contentOffset) animated:YES];
     }];
     
@@ -267,10 +277,10 @@
 {
     
     CGRect keyboardFrame = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
-        
+    
     [UIView animateWithDuration:0.3 animations:^{
         float height = self.view.frame.size.height;
-
+        
         self.view.frame = CGRectMake(0,
                                      self.view.frame.origin.y,
                                      self.view.frame.size.width,
@@ -282,27 +292,19 @@
     
 }
 
-#pragma mart - Text Field Validtion
+#pragma mark - UITextFieldDelegate
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
-    if (textField == self.yearTextField)
-    {
-        NSString *newString = [textField.text stringByReplacingCharactersInRange:range withString:string];
-        
-        NSString *expression = @"^([0-9]+)?(\\.([0-9]{1,2})?)?$";
-        
-        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:expression
-                                                                               options:NSRegularExpressionCaseInsensitive
-                                                                                 error:nil];
-        NSUInteger numberOfMatches = [regex numberOfMatchesInString:newString
-                                                            options:0
-                                                              range:NSMakeRange(0, [newString length])];
-        if (numberOfMatches == 0)
-            return NO;
-    }
     
-    return YES;
+    NSCharacterSet *unacceptedInput =
+    [[NSCharacterSet characterSetWithCharactersInString:CHARACTERS] invertedSet];
+    
+    if ([[string componentsSeparatedByCharactersInSet:unacceptedInput] count] > 1)
+        return NO;
+    else
+        return YES;
+    
 }
 
 @end

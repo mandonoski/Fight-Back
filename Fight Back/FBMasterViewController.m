@@ -12,6 +12,7 @@
 #import "TTLocationHandler.h"
 #import "FBViechlesViewController.h"
 #import "FBDriversViewController.h"
+#import "LogDates.h"
 
 @interface FBMasterViewController ()
 
@@ -62,18 +63,6 @@
     self.driversView.view.alpha = 0;
 }
 
-
-#pragma mark - dbHelper
-
-- (void) saveContext{
-    
-    NSError *error;
-    if (![appDelegate.managedObjectContext save:&error]) {
-        NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
-    }
-    
-}
-
 #pragma mark - IBActions
 
 - (IBAction)logPressed:(id)sender{
@@ -89,7 +78,7 @@
                               otherButtonTitles:nil];
         [alert show];
     }
-     
+    
 }
 
 - (IBAction)recordPressed:(id)sender{
@@ -98,6 +87,7 @@
         if ([appDelegate getActiveDriver] && [appDelegate getActiveViechle]) {
             if(isRecording){
                 isRecording = NO;
+                [self endLogEntry];
                 [self.repeatingTimer invalidate];
                 self.repeatingTimer = nil;
                 [self.recordButton setImage:[UIImage imageNamed:@"record.png"] forState:UIControlStateNormal];
@@ -105,10 +95,13 @@
             else {
                 isRecording = YES;
                 
+                [self startLogEntry];
+                
                 NSLog(@"Location: %@", [locationController.locationManager.location description]);
                 [self writeInDbWithLocation:locationController.locationManager.location];
                 
-                self.repeatingTimer = [NSTimer scheduledTimerWithTimeInterval:3.5
+                self.repeatingTimer = [NSTimer scheduledTimerWithTimeInterval:4.0
+                                       
                                                                        target:self
                                                                      selector:@selector(targetMethod:)
                                                                      userInfo:[self userInfo]
@@ -154,7 +147,7 @@
     
     [UIView animateWithDuration:0.3 animations:^{
         self.driversView.view.alpha = 0.0;
-         
+        
     } completion:^(BOOL finished) {
         [UIView animateWithDuration:0.3 animations:^{
             self.viechlesView.view.alpha = 1.0;
@@ -195,7 +188,6 @@
 
 - (void) writeInDbWithLocation:(CLLocation *)currentLocation{
     
-    
     NSManagedObjectContext *context = [appDelegate managedObjectContext];
     SpeedData *speedData = [NSEntityDescription insertNewObjectForEntityForName:@"SpeedData" inManagedObjectContext:context];
     speedData.speed = [@"" stringByAppendingFormat:@"%f",[currentLocation speed]];
@@ -212,8 +204,49 @@
     if (![appDelegate.managedObjectContext save:&error]) {
         NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
     }
+    
+}
 
+#pragma mark - logDates Modification
 
+- (void)startLogEntry{
+    
+    NSManagedObjectContext *context = [appDelegate managedObjectContext];
+    LogDates *logDates = [NSEntityDescription insertNewObjectForEntityForName:@"LogDates" inManagedObjectContext:context];
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy:MM:dd HH:mm:ss"];
+    
+    logDates.start = [formatter stringFromDate:[NSDate date]];
+    
+    NSError *error;
+    if (![appDelegate.managedObjectContext save:&error]) {
+        NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+    }
+    
+}
+
+- (void)endLogEntry{
+    
+    NSError *error;
+    if (![self.managedObjectContext save:&error]) {
+        NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+    }
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"LogDates"
+                                              inManagedObjectContext:appDelegate.managedObjectContext];
+    [fetchRequest setEntity:entity];
+    
+    NSArray *resultData = [appDelegate.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    
+    LogDates *logDates = [resultData lastObject];
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy:MM:dd HH:mm:ss"];
+    
+    logDates.end = [formatter stringFromDate:[NSDate date]];
+    
 }
 
 @end

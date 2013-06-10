@@ -15,8 +15,9 @@
 
 #define CONVERSION_RATE_KM 1000
 #define CONVERSION_RATE_M 1609.34
+#define kBgQueue dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0) //1
 
-@interface FBDrivingLog ()
+@interface FBDrivingLog () <UIAlertViewDelegate>
 
 @property (nonatomic, strong) NSArray *logData;
 @property (nonatomic, weak) IBOutlet FBCustomLabel *averageSpeedLabel;
@@ -30,8 +31,11 @@
 @property (nonatomic, weak) IBOutlet FBCustomLabel *mesurementType2;
 @property (nonatomic, weak) IBOutlet UITableView *mainTable;
 @property (nonatomic, weak) IBOutlet UISwitch *systemSwitch;
+@property (nonatomic, strong) UITextField *utextfield;
 
 @property (nonatomic) BOOL miles;
+
+-(IBAction)buyPdfPressed:(id)sender;
 
 @end
 
@@ -40,9 +44,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-        
+    
     appDelegate = (FBAppDelegate *)[[UIApplication sharedApplication] delegate];
-        
+    
     self.logData = [appDelegate generateLog];
     
     self.miles = YES;
@@ -145,6 +149,94 @@
     
 }
 
+- (IBAction)buyPdfPressed:(id)sender{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Enter email"
+                                                    message:@"The generated pdf will be sent to:"
+                                                   delegate:self
+                                          cancelButtonTitle:@"Cancel"
+                                          otherButtonTitles:@"OK", nil];
+    alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+    self.utextfield = [alert textFieldAtIndex:0];
+    self.utextfield.placeholder = @"email";
+    self.utextfield.keyboardType = UIKeyboardTypeEmailAddress;
+    
+    /*self.utextfield = [[UITextField alloc] initWithFrame:CGRectMake(12.0, 45.0, 260.0, 25.0)];
+    self.utextfield.placeholder = @"email";
+    self.utextfield.keyboardType = UIKeyboardTypeEmailAddress;
+    [self.utextfield becomeFirstResponder];
+    [self.utextfield setBackgroundColor:[UIColor whiteColor]];
+    [alert addSubview:self.utextfield];*/
+    
+    [alert show];
+}
+
+#pragma mark - UIAlertViewDelegate
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    
+    if (buttonIndex == 1 && ![self.utextfield.text isEqual: @""]) {
+        dispatch_async(kBgQueue, ^{
+            NSString *email = self.utextfield.text;
+            NSString *maxSpeed = self.maxSpeedLabel.text;
+            NSString *averageSpeed = self.averageSpeedLabel.text;
+            NSString *driver = self.driverName.text;
+            NSString *viechle = self.viechleName.text;
+            NSString *theDate = self.day.text;
+            NSString *endTime = self.endDateLabel.text;
+            NSString *stratTime = self.startDateLabel.text;
+            NSString *times = @"";
+            NSString *speeds = @"";
+            
+            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+            [formatter setDateFormat:@"HH:mm:ss"];
+            
+            for (int i = 0; i < ([self.logData count]-1); i++) {
+                
+                SpeedData *thisRecord = [self.logData objectAtIndex:i];
+                
+                NSString *time = [formatter stringFromDate:thisRecord.timeStamp];
+                NSString *speed = [@"" stringByAppendingFormat:@"%.02f",[thisRecord.speed doubleValue]];
+                
+                times = [times stringByAppendingFormat:@"%@,",time];
+                speeds = [speeds stringByAppendingFormat:@"%@,",speed];
+                
+            }
+            
+            SpeedData *thisRecord = [self.logData lastObject];
+            
+            times = [times stringByAppendingFormat:@"%@",[formatter stringFromDate:thisRecord.timeStamp]];
+            speeds = [speeds stringByAppendingFormat:@"%@",[@"" stringByAppendingFormat:@"%.02f",[thisRecord.speed doubleValue]]];
+            
+            NSString *utlString = [@"" stringByAppendingFormat:@"http://www.myspeedwitness.com/mac/generate.php?receiver=%@&max=%@&avg=%@&date=%@&time_start=%@&time_end=%@&driver=%@&vehicle=%@&times=%@&speed=%@", email, maxSpeed, averageSpeed, theDate, stratTime, endTime, driver, viechle, times, speeds];
+            
+            NSURL *requestUrl  =[NSURL URLWithString:[utlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+            
+            NSData* data = [NSData dataWithContentsOfURL:requestUrl];
+            [self performSelectorOnMainThread:@selector(fetchedData:)
+                                   withObject:data waitUntilDone:YES];
+        });
+        
+    }
+    else {
+        return;
+    }
+    
+}
+
+- (void)fetchedData:(NSData *)responseData {
+    //parse out the json data
+    NSError* error;
+    NSDictionary* json = [NSJSONSerialization
+                          JSONObjectWithData:responseData //1
+                          
+                          options:kNilOptions
+                          error:&error];
+    
+    NSArray* latestLoans = [json objectForKey:@"status"]; //2
+    
+    NSLog(@"succes: %@", latestLoans); //3
+}
+
 #pragma mark - Table functionalety
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -170,7 +262,8 @@
     SpeedData *thisRow = [self.logData objectAtIndex:indexPath.row];
     if ([thisRow.dataIsValid isEqualToNumber:[NSNumber numberWithBool:YES]]) {
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-        [formatter setDateFormat:@"HH:mm:ss MM/dd/yyyy"];
+        //[formatter setDateFormat:@"HH:mm:ss MM/dd/yyyy"];
+        [formatter setDateFormat:@"HH:mm:ss"];
         NSString *stringDateRepresentation = [formatter stringFromDate:thisRow.timeStamp];
         
         cell.dateLabel.text = stringDateRepresentation;
