@@ -108,7 +108,7 @@
                 NSLog(@"Location: %@", [locationController.locationManager.location description]);
                 [self writeInDbWithLocation:locationController.locationManager.location];
                 
-                self.repeatingTimer = [NSTimer scheduledTimerWithTimeInterval:10.0
+                self.repeatingTimer = [NSTimer scheduledTimerWithTimeInterval:3.5
                                                                        target:self
                                                                      selector:@selector(targetMethod:)
                                                                      userInfo:[self userInfo]

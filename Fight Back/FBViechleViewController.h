@@ -10,7 +10,7 @@
 #import "FBAppDelegate.h"
 #import "ViechleProfile.h"
 
-@interface FBViechleViewController : UIViewController <UIGestureRecognizerDelegate>{
+@interface FBViechleViewController : UIViewController <UIGestureRecognizerDelegate, UITextFieldDelegate>{
     
     FBAppDelegate *appDelegate;
     

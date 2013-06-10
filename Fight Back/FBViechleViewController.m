@@ -52,6 +52,9 @@
     self.active.offImage = self.offImage;
     self.submitButton.titleLabel.textAlignment = ALIGN_CENTER;
     
+    self.yearTextField.keyboardType = UIKeyboardTypeNumberPad;
+    self.makeTextField.keyboardType = UIKeyboardTypeAlphabet;
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillAppear:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillDisappear:) name:UIKeyboardWillHideNotification object:nil];
     
@@ -279,5 +282,27 @@
     
 }
 
+#pragma mart - Text Field Validtion
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    if (textField == self.yearTextField)
+    {
+        NSString *newString = [textField.text stringByReplacingCharactersInRange:range withString:string];
+        
+        NSString *expression = @"^([0-9]+)?(\\.([0-9]{1,2})?)?$";
+        
+        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:expression
+                                                                               options:NSRegularExpressionCaseInsensitive
+                                                                                 error:nil];
+        NSUInteger numberOfMatches = [regex numberOfMatchesInString:newString
+                                                            options:0
+                                                              range:NSMakeRange(0, [newString length])];
+        if (numberOfMatches == 0)
+            return NO;
+    }
+    
+    return YES;
+}
 
 @end
