@@ -38,6 +38,8 @@
         self.noDataCell.hidden = YES;
         [containerView addSubview:self.noDataCell];
         
+        self.contentView.backgroundColor = [UIColor clearColor];
+        
         [self addSubview:containerView];
     }
     return self;

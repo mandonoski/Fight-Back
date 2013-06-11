@@ -34,6 +34,8 @@
         separator.image = [UIImage imageNamed:@"list_devider.png"];
         [containerView addSubview:separator];
         
+        self.contentView.backgroundColor = [UIColor clearColor];
+        
         [self addSubview:containerView];
     }
     

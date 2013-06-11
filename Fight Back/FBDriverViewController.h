@@ -10,7 +10,7 @@
 #import "DriversProfile.h"
 #import "FBAppDelegate.h"
 
-@interface FBDriverViewController : UIViewController<UIGestureRecognizerDelegate>{
+@interface FBDriverViewController : UIViewController<UIGestureRecognizerDelegate, UITextFieldDelegate>{
     
     FBAppDelegate *appDelegate;
     

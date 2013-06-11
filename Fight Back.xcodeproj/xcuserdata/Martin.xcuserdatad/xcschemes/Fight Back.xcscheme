@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "5B8C560A1729BF6B00953C18"
-               BuildableName = "Fight Back.app"
-               BlueprintName = "Fight Back"
+               BuildableName = "My Speed Witness.app"
+               BlueprintName = "My Speed Witness"
                ReferencedContainer = "container:Fight Back.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -33,8 +33,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5B8C560A1729BF6B00953C18"
-            BuildableName = "Fight Back.app"
-            BlueprintName = "Fight Back"
+            BuildableName = "My Speed Witness.app"
+            BlueprintName = "My Speed Witness"
             ReferencedContainer = "container:Fight Back.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -52,8 +52,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5B8C560A1729BF6B00953C18"
-            BuildableName = "Fight Back.app"
-            BlueprintName = "Fight Back"
+            BuildableName = "My Speed Witness.app"
+            BlueprintName = "My Speed Witness"
             ReferencedContainer = "container:Fight Back.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -70,8 +70,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5B8C560A1729BF6B00953C18"
-            BuildableName = "Fight Back.app"
-            BlueprintName = "Fight Back"
+            BuildableName = "My Speed Witness.app"
+            BlueprintName = "My Speed Witness"
             ReferencedContainer = "container:Fight Back.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

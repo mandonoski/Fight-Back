@@ -13,6 +13,7 @@
 #import "FBViechlesViewController.h"
 #import "FBDriversViewController.h"
 #import "LogDates.h"
+#import <AudioToolbox/AudioToolbox.h>
 
 @interface FBMasterViewController ()
 
@@ -63,6 +64,15 @@
     self.driversView.view.alpha = 0;
 }
 
+- (void) playBeep{
+    SystemSoundID mySSID;
+    
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"beep-7" ofType:@"wav"];
+    AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath: path], &mySSID);
+    
+    AudioServicesPlaySystemSound(mySSID);
+}
+
 #pragma mark - IBActions
 
 - (IBAction)logPressed:(id)sender{
@@ -85,6 +95,9 @@
     
     if ([appDelegate checkIfUsersAreAdded] && [appDelegate checkIfViechlesAreAdded]) {
         if ([appDelegate getActiveDriver] && [appDelegate getActiveViechle]) {
+            
+            [self playBeep];
+            
             if(isRecording){
                 isRecording = NO;
                 [self endLogEntry];

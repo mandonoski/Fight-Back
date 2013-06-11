@@ -133,6 +133,30 @@
     [super didReceiveMemoryWarning];
 }
 
+- (BOOL) checkConnection {
+    
+    Reachability *reachability = [Reachability reachabilityForInternetConnection];
+    NetworkStatus internetStatus = [reachability currentReachabilityStatus];
+    
+    if(internetStatus == NotReachable) {
+        /*UIAlertView *errorView;
+        
+        errorView = [[UIAlertView alloc]
+                     initWithTitle: NSLocalizedString(@"Network error", @"Network error")
+                     message: NSLocalizedString(@"No internet connection found, this application requires an internet connection to gather the data required.", @"Network error")
+                     delegate: self
+                     cancelButtonTitle: NSLocalizedString(@"Close", @"Network error") otherButtonTitles: nil];
+        
+        [errorView show];
+        [errorView autorelease];*/
+        return NO;
+    }
+    else {
+        return YES;
+    }
+    
+}
+
 #pragma mark - IBActions
 
 - (IBAction)switchPressed:(id)sender{
@@ -150,24 +174,40 @@
 }
 
 - (IBAction)buyPdfPressed:(id)sender{
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Enter email"
-                                                    message:@"The generated pdf will be sent to:"
-                                                   delegate:self
-                                          cancelButtonTitle:@"Cancel"
-                                          otherButtonTitles:@"OK", nil];
-    alert.alertViewStyle = UIAlertViewStylePlainTextInput;
-    self.utextfield = [alert textFieldAtIndex:0];
-    self.utextfield.placeholder = @"email";
-    self.utextfield.keyboardType = UIKeyboardTypeEmailAddress;
+    if ([self checkConnection]) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Enter email"
+                                                        message:@"The generated pdf will be sent to:"
+                                                       delegate:self
+                                              cancelButtonTitle:@"Cancel"
+                                              otherButtonTitles:@"OK", nil];
+        alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+        self.utextfield = [alert textFieldAtIndex:0];
+        self.utextfield.placeholder = @"email";
+        self.utextfield.keyboardType = UIKeyboardTypeEmailAddress;
+        
+        /*self.utextfield = [[UITextField alloc] initWithFrame:CGRectMake(12.0, 45.0, 260.0, 25.0)];
+        self.utextfield.placeholder = @"email";
+        self.utextfield.keyboardType = UIKeyboardTypeEmailAddress;
+        [self.utextfield becomeFirstResponder];
+        [self.utextfield setBackgroundColor:[UIColor whiteColor]];
+        [alert addSubview:self.utextfield];*/
+        
+        [alert show];
+    }
+    else {
+        UIAlertView *errorView;
+        errorView = [[UIAlertView alloc]
+                     initWithTitle: NSLocalizedString(@"Network error", @"Network error")
+                     message: NSLocalizedString(@"No internet connection found, this application requires an internet connection to sent the data required for the pdf.", @"Network error")
+                     delegate: self
+                     cancelButtonTitle: NSLocalizedString(@"Close", @"Network error") otherButtonTitles: nil];
+        
+        [errorView show];
+    }
     
-    /*self.utextfield = [[UITextField alloc] initWithFrame:CGRectMake(12.0, 45.0, 260.0, 25.0)];
-    self.utextfield.placeholder = @"email";
-    self.utextfield.keyboardType = UIKeyboardTypeEmailAddress;
-    [self.utextfield becomeFirstResponder];
-    [self.utextfield setBackgroundColor:[UIColor whiteColor]];
-    [alert addSubview:self.utextfield];*/
     
-    [alert show];
+    
+    
 }
 
 #pragma mark - UIAlertViewDelegate

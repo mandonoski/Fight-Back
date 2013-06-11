@@ -21,6 +21,8 @@
 		5B0E10A5174E3108008E4AF5 /* FBCustomLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B0E10A4174E3108008E4AF5 /* FBCustomLabel.m */; };
 		5B22B851173FF6B000577209 /* FBCLController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B22B850173FF6B000577209 /* FBCLController.m */; };
 		5B22B852173FF9C500577209 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B22B84B173FF55700577209 /* CoreLocation.framework */; };
+		5B3BEE8C17673710003D5303 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3BEE8B17673539003D5303 /* Reachability.m */; };
+		5B3BEE8E17673798003D5303 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B3BEE8D17673798003D5303 /* SystemConfiguration.framework */; };
 		5B8A896017353C2400E77A6A /* FBVicleCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B8A895F17353C2400E77A6A /* FBVicleCellView.m */; };
 		5B8A8964173542DB00E77A6A /* list_devider.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B8A8963173542DB00E77A6A /* list_devider.png */; };
 		5B8A89661735462400E77A6A /* 1_navigation_next_item.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B8A89651735462400E77A6A /* 1_navigation_next_item.png */; };
@@ -91,6 +93,9 @@
 		5B22B84B173FF55700577209 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		5B22B84F173FF6B000577209 /* FBCLController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBCLController.h; sourceTree = "<group>"; };
 		5B22B850173FF6B000577209 /* FBCLController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBCLController.m; sourceTree = "<group>"; };
+		5B3BEE8A17673539003D5303 /* Reachability.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		5B3BEE8B17673539003D5303 /* Reachability.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		5B3BEE8D17673798003D5303 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		5B8A895E17353C2400E77A6A /* FBVicleCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBVicleCellView.h; sourceTree = "<group>"; };
 		5B8A895F17353C2400E77A6A /* FBVicleCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBVicleCellView.m; sourceTree = "<group>"; };
 		5B8A8963173542DB00E77A6A /* list_devider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = list_devider.png; sourceTree = "<group>"; };
@@ -101,7 +106,7 @@
 		5B8A89721735625200E77A6A /* FBDrivingLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBDrivingLog.m; sourceTree = "<group>"; };
 		5B8A89741735844000E77A6A /* FBDrivingLogCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBDrivingLogCell.h; sourceTree = "<group>"; };
 		5B8A89751735844000E77A6A /* FBDrivingLogCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBDrivingLogCell.m; sourceTree = "<group>"; };
-		5B8C560B1729BF6B00953C18 /* Fight Back.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fight Back.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5B8C560B1729BF6B00953C18 /* My Speed Witness.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "My Speed Witness.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B8C560E1729BF6B00953C18 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		5B8C56101729BF6B00953C18 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		5B8C56121729BF6B00953C18 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -154,6 +159,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B3BEE8E17673798003D5303 /* SystemConfiguration.framework in Frameworks */,
 				5B8CA15B1745651100846384 /* AVFoundation.framework in Frameworks */,
 				5B8CA1591745650600846384 /* AudioToolbox.framework in Frameworks */,
 				5B22B852173FF9C500577209 /* CoreLocation.framework in Frameworks */,
@@ -264,6 +270,15 @@
 			name = Objects;
 			sourceTree = "<group>";
 		};
+		5B3BEE8917673528003D5303 /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				5B3BEE8A17673539003D5303 /* Reachability.h */,
+				5B3BEE8B17673539003D5303 /* Reachability.m */,
+			);
+			name = Reachability;
+			sourceTree = "<group>";
+		};
 		5B8A895D17353BE000E77A6A /* Custom cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -280,6 +295,7 @@
 		5B8C56021729BF6B00953C18 = {
 			isa = PBXGroup;
 			children = (
+				5B3BEE8D17673798003D5303 /* SystemConfiguration.framework */,
 				5B0E1097174E295B008E4AF5 /* Default-568h@2x.png */,
 				5B0E1095174E2953008E4AF5 /* Default@2x.png */,
 				5B8CA15A1745651100846384 /* AVFoundation.framework */,
@@ -295,7 +311,7 @@
 		5B8C560C1729BF6B00953C18 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				5B8C560B1729BF6B00953C18 /* Fight Back.app */,
+				5B8C560B1729BF6B00953C18 /* My Speed Witness.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -314,6 +330,7 @@
 		5B8C56161729BF6B00953C18 /* Fight Back */ = {
 			isa = PBXGroup;
 			children = (
+				5B3BEE8917673528003D5303 /* Reachability */,
 				5B0E10A2174E30EA008E4AF5 /* Custom Label */,
 				5B0E109A174E2E18008E4AF5 /* Custom Text View */,
 				5BA56DF017478C2F006F0D1A /* LocationHandler */,
@@ -385,9 +402,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		5B8C560A1729BF6B00953C18 /* Fight Back */ = {
+		5B8C560A1729BF6B00953C18 /* My Speed Witness */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5B8C56361729BF6B00953C18 /* Build configuration list for PBXNativeTarget "Fight Back" */;
+			buildConfigurationList = 5B8C56361729BF6B00953C18 /* Build configuration list for PBXNativeTarget "My Speed Witness" */;
 			buildPhases = (
 				5B8C56071729BF6B00953C18 /* Sources */,
 				5B8C56081729BF6B00953C18 /* Frameworks */,
@@ -397,9 +414,9 @@
 			);
 			dependencies = (
 			);
-			name = "Fight Back";
+			name = "My Speed Witness";
 			productName = "Fight Back";
-			productReference = 5B8C560B1729BF6B00953C18 /* Fight Back.app */;
+			productReference = 5B8C560B1729BF6B00953C18 /* My Speed Witness.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -424,7 +441,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				5B8C560A1729BF6B00953C18 /* Fight Back */,
+				5B8C560A1729BF6B00953C18 /* My Speed Witness */,
 			);
 		};
 /* End PBXProject section */
@@ -473,6 +490,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B3BEE8C17673710003D5303 /* Reachability.m in Sources */,
 				5B8C561D1729BF6B00953C18 /* main.m in Sources */,
 				5B8C56211729BF6B00953C18 /* FBAppDelegate.m in Sources */,
 				5B8C563B1729C02200953C18 /* FBMasterViewController.m in Sources */,
@@ -616,7 +634,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5B8C56361729BF6B00953C18 /* Build configuration list for PBXNativeTarget "Fight Back" */ = {
+		5B8C56361729BF6B00953C18 /* Build configuration list for PBXNativeTarget "My Speed Witness" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5B8C56371729BF6B00953C18 /* Debug */,

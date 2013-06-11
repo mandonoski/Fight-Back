@@ -8,10 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "FBAppDelegate.h"
+#import "Reachability.h"
 
 @interface FBDrivingLog : UIViewController{
     
     FBAppDelegate *appDelegate;
+    Reachability *internetReachableFoo;
     
 }
 

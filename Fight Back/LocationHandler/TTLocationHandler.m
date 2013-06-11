@@ -126,8 +126,6 @@ static const double WALK_DISTANCE_FILTER = 0.1;
       
       // Tell the user why we need location services. This is default message,
       // set self.locationManagerPurposeString from appDelegate for custom message.
-      self.locationManager.purpose =
-                NSLocalizedString(@"LOCATION SERVICES IS AN IMPORTANT FEATURE ALLOWING ACCESS TO YOUR GPS AND WI-FI HARDWARE TO ATTAIN POSITION INFO", @"Default string for location services enable dialog");
       
       _pendingLocationsQueue = [[NSMutableArray alloc] init];
       _pendingLocationsTimerDuration = 10;
@@ -266,7 +264,6 @@ static const double WALK_DISTANCE_FILTER = 0.1;
 
 -(void)setLocationManagerPurposeString:(NSString *)locationManagerPurposeString {
     _locationManagerPurposeString = [locationManagerPurposeString copy];
-    self.locationManager.purpose = _locationManagerPurposeString;
 }
 
 -(void)setUpdatesInBackgroundWhenCharging:(BOOL)updatesInBackgroundWhenCharging {

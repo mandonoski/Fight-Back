@@ -10,7 +10,7 @@
 #import "FBCLController.h"
 #import "FBAppDelegate.h"
 
-@interface FBMasterViewController : UIViewController <UITableViewDataSource>{
+@interface FBMasterViewController : UIViewController{
     
     FBCLController *locationController;
     BOOL isRecording;

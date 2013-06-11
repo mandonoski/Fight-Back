@@ -35,6 +35,7 @@
 # define ALIGN_CENTER UITextAlignmentCenter
 #endif
 
+#define CHARACTERS          @" ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
 
 - (IBAction)tapRecognized:(id)sender;
 - (IBAction)dissmisPressed:(id)sender;
@@ -65,6 +66,11 @@
 - (void)viewWillAppear:(BOOL)animated{
     
     [super viewWillAppear:animated];
+    
+    self.nameTextField.delegate = self;
+    self.surenameTextField.delegate = self;
+    self.DLStateTextField.delegate = self;
+    self.InsurenceCompanyTextField.delegate = self;
     
     if (self.isEditing) {
         self.nameTextField.text = self.editingProfile.firstName;
@@ -277,6 +283,21 @@
                                                       (height))];
         
     }];
+    
+}
+
+#pragma mark - UITextFieldDelegate
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    
+    NSCharacterSet *unacceptedInput =
+    [[NSCharacterSet characterSetWithCharactersInString:CHARACTERS] invertedSet];
+    
+    if ([[string componentsSeparatedByCharactersInSet:unacceptedInput] count] > 1)
+        return NO;
+    else
+        return YES;
     
 }
 
