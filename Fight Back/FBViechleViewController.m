@@ -48,8 +48,8 @@
 {
     [super viewDidLoad];
     appDelegate = (FBAppDelegate *)[[UIApplication sharedApplication] delegate];
-    self.offImage = [UIImage imageNamed:@"no.png"];
-    self.onImage = [UIImage imageNamed:@"yes.png"];
+    self.offImage = [UIImage imageNamed:@"mph.jpg"];
+    self.onImage = [UIImage imageNamed:@"kmh.jpg"];
     self.active.onImage = self.onImage;
     self.active.offImage = self.offImage;
     self.submitButton.titleLabel.textAlignment = ALIGN_CENTER;
